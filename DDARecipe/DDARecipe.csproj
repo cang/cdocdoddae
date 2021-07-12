@@ -1,0 +1,509 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D2FC614-3C1F-491D-92A8-7A2129A8E1F4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DDARecipe</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DDARecipe</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FPPCommon, Version=1.0.4043.20407, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\FPPCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SiGlaz.DDA.Framework, Version=1.0.4043.20447, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SiGlaz.DDA.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SiGlaz.DDA.WinControls, Version=1.0.4043.20812, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SiGlaz.DDA.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="SiGlaz.Windows.Forms, Version=1.0.4043.27113, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SiGlaz.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="SSA.Business.Facade.BFacadeTC, Version=1.0.4043.20441, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SSA.Business.Facade.BFacadeTC.dll</HintPath>
+    </Reference>
+    <Reference Include="SSA.Business.Facade.FacadeDCDM, Version=1.0.4043.20440, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SSA.Business.Facade.FacadeDCDM.dll</HintPath>
+    </Reference>
+    <Reference Include="SSA.Common.TC, Version=1.0.4043.20408, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SSA.Common.TC.dll</HintPath>
+    </Reference>
+    <Reference Include="SSA.KlarfViewCtrl, Version=1.0.4043.20803, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SSA.KlarfViewCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="SSA.SystemFrameworks, Version=1.0.4043.20407, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\SSA.SystemFrameworks.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Utility, Version=1.0.4043.19735, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\COMPONENTS\Utility.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Name>Common</Name>
+      <Project>{8DC480C9-EFA5-4815-B444-45C6AA31A494}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Name>DAL</Name>
+      <Project>{AFCDD145-3133-4880-98FF-B3BDBD0EBDED}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBuss\DataBus.csproj">
+      <Name>DataBus</Name>
+      <Project>{B0BEF7E6-5A65-4D18-A3FD-6EDCB1CB854A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipe\Recipe.csproj">
+      <Name>Recipe</Name>
+      <Project>{D289DAF7-CD18-448A-AAF9-C5E2FAEC06B3}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareMemory\ShareMemory.csproj">
+      <Name>ShareMemory</Name>
+      <Project>{827318D6-2B65-41F1-81CF-A3FBCBE57E41}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\WebServiceProxy\WebServiceProxy.csproj">
+      <Name>WebServiceProxy</Name>
+      <Project>{7B7A020D-90E2-4051-9C89-D62D2A4FED44}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvancedSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Begin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChannelFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClearResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlRecipe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlTimeFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DDAConst.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDADataFlowHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDAExternalData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDARecipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDARecipeEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDASharedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDAWorkingSpace.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Decision.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgConditionHint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgDiskTypeConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgGrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgGradeDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgMoreCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgOutputSignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgResultFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgSelectSignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgWebServiceConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TesterNoiseDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="End.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FalseLink.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlatViewAdvancedSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FunctionalSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HeaderOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InterProcessRecipeEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KnnMinMaxFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KnnPercentFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Link.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinkDefect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinkDefectFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Message.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Output.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OutputSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PatternRecognition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RecipeData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RemoveDuplicateDefects.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpiralSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Surface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SwitchMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TesterNoiseDetection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TextHistory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TrueLink.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnlinkDefect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ZonalProcess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Controls\ctrlRecipe.resx">
+      <DependentUpon>ctrlRecipe.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlTimeFilter.resx">
+      <DependentUpon>ctrlTimeFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgConditionHint.resx">
+      <DependentUpon>DlgConditionHint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgDiskTypeConfiguration.resx">
+      <DependentUpon>DlgDiskTypeConfiguration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgGrade.resx">
+      <DependentUpon>DlgGrade.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgGradeDetail.resx">
+      <DependentUpon>DlgGradeDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgMoreCondition.resx">
+      <DependentUpon>DlgMoreCondition.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgOptions.resx">
+      <DependentUpon>DlgOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgOutputSignature.resx">
+      <DependentUpon>DlgOutputSignature.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgProduct.resx">
+      <DependentUpon>DlgProduct.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgResultFilter.resx">
+      <DependentUpon>DlgResultFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgSelectSignature.resx">
+      <DependentUpon>DlgSelectSignature.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgWebServiceConfiguration.resx">
+      <DependentUpon>DlgWebServiceConfiguration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TesterNoiseDlg.resx">
+      <DependentUpon>TesterNoiseDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AdvancedSignature.gif" />
+    <EmbeddedResource Include="Images\Begin.gif" />
+    <EmbeddedResource Include="Images\ChannelFilter.gif" />
+    <EmbeddedResource Include="Images\ClearResult.gif" />
+    <EmbeddedResource Include="Images\Decision.gif" />
+    <EmbeddedResource Include="Images\End.gif" />
+    <EmbeddedResource Include="Images\FlatViewAdvancedSignature.gif" />
+    <EmbeddedResource Include="Images\FunctionalSignature.gif" />
+    <EmbeddedResource Include="Images\HeaderOption.gif" />
+    <EmbeddedResource Include="Images\KnnMinMaxFilter.gif" />
+    <EmbeddedResource Include="Images\KnnPercentFilter.gif" />
+    <EmbeddedResource Include="Images\LinkDefect.gif" />
+    <EmbeddedResource Include="Images\LinkDefectFilter.gif" />
+    <EmbeddedResource Include="Images\Output.gif" />
+    <EmbeddedResource Include="Images\OutputSignature.gif" />
+    <EmbeddedResource Include="Images\PatternRecognition.gif" />
+    <EmbeddedResource Include="Images\RemoveDuplicateDefects.gif" />
+    <EmbeddedResource Include="Images\ResultFilter.gif" />
+    <EmbeddedResource Include="Images\SpiralSignature.gif" />
+    <EmbeddedResource Include="Images\Surface.gif" />
+    <EmbeddedResource Include="Images\SwitchMode.gif" />
+    <EmbeddedResource Include="Images\TesterNoiseDetection.gif" />
+    <EmbeddedResource Include="Images\UnlinkDefect.gif" />
+    <EmbeddedResource Include="Images\ZonalProcess.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

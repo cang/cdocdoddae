@@ -1,0 +1,1785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://siglaz.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestConnection_DDADB">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestConnection_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestConnection_DDADBResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestConnection_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DDADBType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DDADB" />
+          <s:enumeration value="DDAStagingArea" />
+          <s:enumeration value="DDAArchives" />
+          <s:enumeration value="DDADataMarts" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="TestConnection_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestConnection_DDAStagingAreaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fabid" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FabExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabInsertName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fab" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabInsertNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FabInsertNameResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Fab" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Fab">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FabInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FabInsertResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FabList">
+        <s:complexType />
+      </s:element>
+      <s:element name="FabListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FabListResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSetResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalRow" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s0:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetFabByFabID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFabByFabIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFabByFabIDResult" type="s0:Fab" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StationInsertName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="station" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StationInsertNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StationInsertNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StationInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Station" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Station">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StationName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StationInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StationInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StationList">
+        <s:complexType />
+      </s:element>
+      <s:element name="StationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StationListResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductInsertName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Product" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductInsertNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductInsertNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Product" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Product">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prod_Class" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProductInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductListDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="ProductListDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductListDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductList">
+        <s:complexType />
+      </s:element>
+      <s:element name="ProductListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductListResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProductDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DiskSizeKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductDeleteResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultBase">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id64" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="id32" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id16" type="s:short" />
+              <s:element minOccurs="0" maxOccurs="1" name="idstring" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ProductCanDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductCanDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductCanDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WordCellsInsertName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wordCell" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WordCellsInsertNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WordCellsInsertNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WordCellsInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:WordCell" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WordCell">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="WordCellID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WordCellsInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WordCellsInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WordCellsList">
+        <s:complexType />
+      </s:element>
+      <s:element name="WordCellsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WordCellsListResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiskSizesInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:DiskSize" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DiskSize">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DiskSizeKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prod_Class" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InnerDiameter" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="OuterDiameter" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DiskSizesInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DiskSizesInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiskSizesListDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="DiskSizesListDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiskSizesListDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiskSizesList">
+        <s:complexType />
+      </s:element>
+      <s:element name="DiskSizesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiskSizesListResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDiskSizesListDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="ProductDiskSizesListDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductDiskSizesListDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDiskSizesList">
+        <s:complexType />
+      </s:element>
+      <s:element name="ProductDiskSizesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductDiskSizesListResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDiskSizeExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDiskSizeExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductDiskSizeExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductGetProductClass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductGetProductClassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductGetProductClassResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductDiskSize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductDiskSize">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DiskSizeKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prod_Class" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InnerDiameter" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="OuterDiameter" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductDiskSizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductDiskSizeResult" type="s0:ProductDiskSize" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiskSizesDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DiskSizeKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiskSizesDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiskSizesDeleteResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChannelsInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Channel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Channel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ChannelID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChannelName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChannelsInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChannelsInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChannelsList">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChannelsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChannelsListResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureListToDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="SignatureListToDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignatureListToDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureList">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="Signature">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SignatureID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SCKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignatureName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SignatureListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignatureListResult" type="s0:SignatureListResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SignatureListResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="signature" type="s0:Signature" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="SignatureInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Signature" />
+            <s:element minOccurs="1" maxOccurs="1" name="updatebyName" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="skipUpdate" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SignatureInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignatureDeleteResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureCanDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureCanDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SignatureCanDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureGetByKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureGetByKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignatureGetByKeyResult" type="s0:Signature" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureGetByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="signatureName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignatureGetByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignatureGetByNameResult" type="s0:Signature" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastUpdateOfTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastUpdateOfTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLastUpdateOfTableResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastUpdateOfDiskSize">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLastUpdateOfDiskSizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLastUpdateOfDiskSizeResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TesterTypesExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="testertypeid" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TesterTypesExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TesterTypesExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TesterTypesInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="testertype" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TesterTypesInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TesterTypesInsertResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TesterTypesList">
+        <s:complexType />
+      </s:element>
+      <s:element name="TesterTypesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TesterTypesListResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradesListToDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="GradesListToDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradesListToDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradesList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GradesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradesListResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradeMappingGetSignatureKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="gradekey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradeMappingGetSignatureKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradeMappingGetSignatureKeyResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradeMappingGetSignature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="gradekey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradeMappingGetSignatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradeMappingGetSignatureResult" type="s0:SignatureListResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradesInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objinsert" type="s0:Grade" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Grade">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Gradekey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GradeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GradeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignatureKeyList" type="s0:ArrayOfAnyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GradesInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GradesInsertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradesDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradesDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradesDeleteResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GradeMappingGetUnknownSignature">
+        <s:complexType />
+      </s:element>
+      <s:element name="GradeMappingGetUnknownSignatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GradeMappingGetUnknownSignatureResult" type="s0:SignatureListResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationDataInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationDataInsertResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ApplicationDataGetValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationDataGetValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationDataGetValueResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="HelloWorldSoapIn">
+    <part name="parameters" element="s0:HelloWorld" />
+  </message>
+  <message name="HelloWorldSoapOut">
+    <part name="parameters" element="s0:HelloWorldResponse" />
+  </message>
+  <message name="TestConnection_DDADBSoapIn">
+    <part name="parameters" element="s0:TestConnection_DDADB" />
+  </message>
+  <message name="TestConnection_DDADBSoapOut">
+    <part name="parameters" element="s0:TestConnection_DDADBResponse" />
+  </message>
+  <message name="TestConnection_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:TestConnection_DDAStagingArea" />
+  </message>
+  <message name="TestConnection_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:TestConnection_DDAStagingAreaResponse" />
+  </message>
+  <message name="FabExistSoapIn">
+    <part name="parameters" element="s0:FabExist" />
+  </message>
+  <message name="FabExistSoapOut">
+    <part name="parameters" element="s0:FabExistResponse" />
+  </message>
+  <message name="FabInsertNameSoapIn">
+    <part name="parameters" element="s0:FabInsertName" />
+  </message>
+  <message name="FabInsertNameSoapOut">
+    <part name="parameters" element="s0:FabInsertNameResponse" />
+  </message>
+  <message name="FabInsertSoapIn">
+    <part name="parameters" element="s0:FabInsert" />
+  </message>
+  <message name="FabInsertSoapOut">
+    <part name="parameters" element="s0:FabInsertResponse" />
+  </message>
+  <message name="FabListSoapIn">
+    <part name="parameters" element="s0:FabList" />
+  </message>
+  <message name="FabListSoapOut">
+    <part name="parameters" element="s0:FabListResponse" />
+  </message>
+  <message name="GetFabByFabIDSoapIn">
+    <part name="parameters" element="s0:GetFabByFabID" />
+  </message>
+  <message name="GetFabByFabIDSoapOut">
+    <part name="parameters" element="s0:GetFabByFabIDResponse" />
+  </message>
+  <message name="StationInsertNameSoapIn">
+    <part name="parameters" element="s0:StationInsertName" />
+  </message>
+  <message name="StationInsertNameSoapOut">
+    <part name="parameters" element="s0:StationInsertNameResponse" />
+  </message>
+  <message name="StationInsertSoapIn">
+    <part name="parameters" element="s0:StationInsert" />
+  </message>
+  <message name="StationInsertSoapOut">
+    <part name="parameters" element="s0:StationInsertResponse" />
+  </message>
+  <message name="StationListSoapIn">
+    <part name="parameters" element="s0:StationList" />
+  </message>
+  <message name="StationListSoapOut">
+    <part name="parameters" element="s0:StationListResponse" />
+  </message>
+  <message name="ProductInsertNameSoapIn">
+    <part name="parameters" element="s0:ProductInsertName" />
+  </message>
+  <message name="ProductInsertNameSoapOut">
+    <part name="parameters" element="s0:ProductInsertNameResponse" />
+  </message>
+  <message name="ProductInsertSoapIn">
+    <part name="parameters" element="s0:ProductInsert" />
+  </message>
+  <message name="ProductInsertSoapOut">
+    <part name="parameters" element="s0:ProductInsertResponse" />
+  </message>
+  <message name="ProductListDatasetSoapIn">
+    <part name="parameters" element="s0:ProductListDataset" />
+  </message>
+  <message name="ProductListDatasetSoapOut">
+    <part name="parameters" element="s0:ProductListDatasetResponse" />
+  </message>
+  <message name="ProductListSoapIn">
+    <part name="parameters" element="s0:ProductList" />
+  </message>
+  <message name="ProductListSoapOut">
+    <part name="parameters" element="s0:ProductListResponse" />
+  </message>
+  <message name="ProductDeleteSoapIn">
+    <part name="parameters" element="s0:ProductDelete" />
+  </message>
+  <message name="ProductDeleteSoapOut">
+    <part name="parameters" element="s0:ProductDeleteResponse" />
+  </message>
+  <message name="ProductCanDeleteSoapIn">
+    <part name="parameters" element="s0:ProductCanDelete" />
+  </message>
+  <message name="ProductCanDeleteSoapOut">
+    <part name="parameters" element="s0:ProductCanDeleteResponse" />
+  </message>
+  <message name="WordCellsInsertNameSoapIn">
+    <part name="parameters" element="s0:WordCellsInsertName" />
+  </message>
+  <message name="WordCellsInsertNameSoapOut">
+    <part name="parameters" element="s0:WordCellsInsertNameResponse" />
+  </message>
+  <message name="WordCellsInsertSoapIn">
+    <part name="parameters" element="s0:WordCellsInsert" />
+  </message>
+  <message name="WordCellsInsertSoapOut">
+    <part name="parameters" element="s0:WordCellsInsertResponse" />
+  </message>
+  <message name="WordCellsListSoapIn">
+    <part name="parameters" element="s0:WordCellsList" />
+  </message>
+  <message name="WordCellsListSoapOut">
+    <part name="parameters" element="s0:WordCellsListResponse" />
+  </message>
+  <message name="DiskSizesInsertSoapIn">
+    <part name="parameters" element="s0:DiskSizesInsert" />
+  </message>
+  <message name="DiskSizesInsertSoapOut">
+    <part name="parameters" element="s0:DiskSizesInsertResponse" />
+  </message>
+  <message name="DiskSizesListDatasetSoapIn">
+    <part name="parameters" element="s0:DiskSizesListDataset" />
+  </message>
+  <message name="DiskSizesListDatasetSoapOut">
+    <part name="parameters" element="s0:DiskSizesListDatasetResponse" />
+  </message>
+  <message name="DiskSizesListSoapIn">
+    <part name="parameters" element="s0:DiskSizesList" />
+  </message>
+  <message name="DiskSizesListSoapOut">
+    <part name="parameters" element="s0:DiskSizesListResponse" />
+  </message>
+  <message name="ProductDiskSizesListDatasetSoapIn">
+    <part name="parameters" element="s0:ProductDiskSizesListDataset" />
+  </message>
+  <message name="ProductDiskSizesListDatasetSoapOut">
+    <part name="parameters" element="s0:ProductDiskSizesListDatasetResponse" />
+  </message>
+  <message name="ProductDiskSizesListSoapIn">
+    <part name="parameters" element="s0:ProductDiskSizesList" />
+  </message>
+  <message name="ProductDiskSizesListSoapOut">
+    <part name="parameters" element="s0:ProductDiskSizesListResponse" />
+  </message>
+  <message name="ProductDiskSizeExistSoapIn">
+    <part name="parameters" element="s0:ProductDiskSizeExist" />
+  </message>
+  <message name="ProductDiskSizeExistSoapOut">
+    <part name="parameters" element="s0:ProductDiskSizeExistResponse" />
+  </message>
+  <message name="ProductGetProductClassSoapIn">
+    <part name="parameters" element="s0:ProductGetProductClass" />
+  </message>
+  <message name="ProductGetProductClassSoapOut">
+    <part name="parameters" element="s0:ProductGetProductClassResponse" />
+  </message>
+  <message name="GetProductDiskSizeSoapIn">
+    <part name="parameters" element="s0:GetProductDiskSize" />
+  </message>
+  <message name="GetProductDiskSizeSoapOut">
+    <part name="parameters" element="s0:GetProductDiskSizeResponse" />
+  </message>
+  <message name="DiskSizesDeleteSoapIn">
+    <part name="parameters" element="s0:DiskSizesDelete" />
+  </message>
+  <message name="DiskSizesDeleteSoapOut">
+    <part name="parameters" element="s0:DiskSizesDeleteResponse" />
+  </message>
+  <message name="ChannelsInsertSoapIn">
+    <part name="parameters" element="s0:ChannelsInsert" />
+  </message>
+  <message name="ChannelsInsertSoapOut">
+    <part name="parameters" element="s0:ChannelsInsertResponse" />
+  </message>
+  <message name="ChannelsListSoapIn">
+    <part name="parameters" element="s0:ChannelsList" />
+  </message>
+  <message name="ChannelsListSoapOut">
+    <part name="parameters" element="s0:ChannelsListResponse" />
+  </message>
+  <message name="SignatureListToDatasetSoapIn">
+    <part name="parameters" element="s0:SignatureListToDataset" />
+  </message>
+  <message name="SignatureListToDatasetSoapOut">
+    <part name="parameters" element="s0:SignatureListToDatasetResponse" />
+  </message>
+  <message name="SignatureListSoapIn">
+    <part name="parameters" element="s0:SignatureList" />
+  </message>
+  <message name="SignatureListSoapOut">
+    <part name="parameters" element="s0:SignatureListResponse" />
+  </message>
+  <message name="SignatureInsertSoapIn">
+    <part name="parameters" element="s0:SignatureInsert" />
+  </message>
+  <message name="SignatureInsertSoapOut">
+    <part name="parameters" element="s0:SignatureInsertResponse" />
+  </message>
+  <message name="SignatureDeleteSoapIn">
+    <part name="parameters" element="s0:SignatureDelete" />
+  </message>
+  <message name="SignatureDeleteSoapOut">
+    <part name="parameters" element="s0:SignatureDeleteResponse" />
+  </message>
+  <message name="SignatureCanDeleteSoapIn">
+    <part name="parameters" element="s0:SignatureCanDelete" />
+  </message>
+  <message name="SignatureCanDeleteSoapOut">
+    <part name="parameters" element="s0:SignatureCanDeleteResponse" />
+  </message>
+  <message name="SignatureGetByKeySoapIn">
+    <part name="parameters" element="s0:SignatureGetByKey" />
+  </message>
+  <message name="SignatureGetByKeySoapOut">
+    <part name="parameters" element="s0:SignatureGetByKeyResponse" />
+  </message>
+  <message name="SignatureGetByNameSoapIn">
+    <part name="parameters" element="s0:SignatureGetByName" />
+  </message>
+  <message name="SignatureGetByNameSoapOut">
+    <part name="parameters" element="s0:SignatureGetByNameResponse" />
+  </message>
+  <message name="GetLastUpdateOfTableSoapIn">
+    <part name="parameters" element="s0:GetLastUpdateOfTable" />
+  </message>
+  <message name="GetLastUpdateOfTableSoapOut">
+    <part name="parameters" element="s0:GetLastUpdateOfTableResponse" />
+  </message>
+  <message name="GetLastUpdateOfDiskSizeSoapIn">
+    <part name="parameters" element="s0:GetLastUpdateOfDiskSize" />
+  </message>
+  <message name="GetLastUpdateOfDiskSizeSoapOut">
+    <part name="parameters" element="s0:GetLastUpdateOfDiskSizeResponse" />
+  </message>
+  <message name="TesterTypesExistSoapIn">
+    <part name="parameters" element="s0:TesterTypesExist" />
+  </message>
+  <message name="TesterTypesExistSoapOut">
+    <part name="parameters" element="s0:TesterTypesExistResponse" />
+  </message>
+  <message name="TesterTypesInsertSoapIn">
+    <part name="parameters" element="s0:TesterTypesInsert" />
+  </message>
+  <message name="TesterTypesInsertSoapOut">
+    <part name="parameters" element="s0:TesterTypesInsertResponse" />
+  </message>
+  <message name="TesterTypesListSoapIn">
+    <part name="parameters" element="s0:TesterTypesList" />
+  </message>
+  <message name="TesterTypesListSoapOut">
+    <part name="parameters" element="s0:TesterTypesListResponse" />
+  </message>
+  <message name="GradesListToDatasetSoapIn">
+    <part name="parameters" element="s0:GradesListToDataset" />
+  </message>
+  <message name="GradesListToDatasetSoapOut">
+    <part name="parameters" element="s0:GradesListToDatasetResponse" />
+  </message>
+  <message name="GradesListSoapIn">
+    <part name="parameters" element="s0:GradesList" />
+  </message>
+  <message name="GradesListSoapOut">
+    <part name="parameters" element="s0:GradesListResponse" />
+  </message>
+  <message name="GradeMappingGetSignatureKeySoapIn">
+    <part name="parameters" element="s0:GradeMappingGetSignatureKey" />
+  </message>
+  <message name="GradeMappingGetSignatureKeySoapOut">
+    <part name="parameters" element="s0:GradeMappingGetSignatureKeyResponse" />
+  </message>
+  <message name="GradeMappingGetSignatureSoapIn">
+    <part name="parameters" element="s0:GradeMappingGetSignature" />
+  </message>
+  <message name="GradeMappingGetSignatureSoapOut">
+    <part name="parameters" element="s0:GradeMappingGetSignatureResponse" />
+  </message>
+  <message name="GradesInsertSoapIn">
+    <part name="parameters" element="s0:GradesInsert" />
+  </message>
+  <message name="GradesInsertSoapOut">
+    <part name="parameters" element="s0:GradesInsertResponse" />
+  </message>
+  <message name="GradesDeleteSoapIn">
+    <part name="parameters" element="s0:GradesDelete" />
+  </message>
+  <message name="GradesDeleteSoapOut">
+    <part name="parameters" element="s0:GradesDeleteResponse" />
+  </message>
+  <message name="GradeMappingGetUnknownSignatureSoapIn">
+    <part name="parameters" element="s0:GradeMappingGetUnknownSignature" />
+  </message>
+  <message name="GradeMappingGetUnknownSignatureSoapOut">
+    <part name="parameters" element="s0:GradeMappingGetUnknownSignatureResponse" />
+  </message>
+  <message name="ApplicationDataInsertSoapIn">
+    <part name="parameters" element="s0:ApplicationDataInsert" />
+  </message>
+  <message name="ApplicationDataInsertSoapOut">
+    <part name="parameters" element="s0:ApplicationDataInsertResponse" />
+  </message>
+  <message name="ApplicationDataGetValueSoapIn">
+    <part name="parameters" element="s0:ApplicationDataGetValue" />
+  </message>
+  <message name="ApplicationDataGetValueSoapOut">
+    <part name="parameters" element="s0:ApplicationDataGetValueResponse" />
+  </message>
+  <portType name="CategorySoap">
+    <operation name="HelloWorld">
+      <input message="s0:HelloWorldSoapIn" />
+      <output message="s0:HelloWorldSoapOut" />
+    </operation>
+    <operation name="TestConnection">
+      <input name="TestConnection_DDADB" message="s0:TestConnection_DDADBSoapIn" />
+      <output name="TestConnection_DDADB" message="s0:TestConnection_DDADBSoapOut" />
+    </operation>
+    <operation name="TestConnection">
+      <input name="TestConnection_DDAStagingArea" message="s0:TestConnection_DDAStagingAreaSoapIn" />
+      <output name="TestConnection_DDAStagingArea" message="s0:TestConnection_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="FabExist">
+      <input message="s0:FabExistSoapIn" />
+      <output message="s0:FabExistSoapOut" />
+    </operation>
+    <operation name="FabInsert">
+      <input name="FabInsertName" message="s0:FabInsertNameSoapIn" />
+      <output name="FabInsertName" message="s0:FabInsertNameSoapOut" />
+    </operation>
+    <operation name="FabInsert">
+      <input message="s0:FabInsertSoapIn" />
+      <output message="s0:FabInsertSoapOut" />
+    </operation>
+    <operation name="FabList">
+      <input message="s0:FabListSoapIn" />
+      <output message="s0:FabListSoapOut" />
+    </operation>
+    <operation name="GetFabByFabID">
+      <input message="s0:GetFabByFabIDSoapIn" />
+      <output message="s0:GetFabByFabIDSoapOut" />
+    </operation>
+    <operation name="StationInsert">
+      <input name="StationInsertName" message="s0:StationInsertNameSoapIn" />
+      <output name="StationInsertName" message="s0:StationInsertNameSoapOut" />
+    </operation>
+    <operation name="StationInsert">
+      <input message="s0:StationInsertSoapIn" />
+      <output message="s0:StationInsertSoapOut" />
+    </operation>
+    <operation name="StationList">
+      <input message="s0:StationListSoapIn" />
+      <output message="s0:StationListSoapOut" />
+    </operation>
+    <operation name="ProductInsert">
+      <input name="ProductInsertName" message="s0:ProductInsertNameSoapIn" />
+      <output name="ProductInsertName" message="s0:ProductInsertNameSoapOut" />
+    </operation>
+    <operation name="ProductInsert">
+      <input message="s0:ProductInsertSoapIn" />
+      <output message="s0:ProductInsertSoapOut" />
+    </operation>
+    <operation name="ProductListDataset">
+      <input message="s0:ProductListDatasetSoapIn" />
+      <output message="s0:ProductListDatasetSoapOut" />
+    </operation>
+    <operation name="ProductList">
+      <input message="s0:ProductListSoapIn" />
+      <output message="s0:ProductListSoapOut" />
+    </operation>
+    <operation name="ProductDelete">
+      <input message="s0:ProductDeleteSoapIn" />
+      <output message="s0:ProductDeleteSoapOut" />
+    </operation>
+    <operation name="ProductCanDelete">
+      <input message="s0:ProductCanDeleteSoapIn" />
+      <output message="s0:ProductCanDeleteSoapOut" />
+    </operation>
+    <operation name="WordCellsInsert">
+      <input name="WordCellsInsertName" message="s0:WordCellsInsertNameSoapIn" />
+      <output name="WordCellsInsertName" message="s0:WordCellsInsertNameSoapOut" />
+    </operation>
+    <operation name="WordCellsInsert">
+      <input message="s0:WordCellsInsertSoapIn" />
+      <output message="s0:WordCellsInsertSoapOut" />
+    </operation>
+    <operation name="WordCellsList">
+      <input message="s0:WordCellsListSoapIn" />
+      <output message="s0:WordCellsListSoapOut" />
+    </operation>
+    <operation name="DiskSizesInsert">
+      <input message="s0:DiskSizesInsertSoapIn" />
+      <output message="s0:DiskSizesInsertSoapOut" />
+    </operation>
+    <operation name="DiskSizesListDataset">
+      <input message="s0:DiskSizesListDatasetSoapIn" />
+      <output message="s0:DiskSizesListDatasetSoapOut" />
+    </operation>
+    <operation name="DiskSizesList">
+      <input message="s0:DiskSizesListSoapIn" />
+      <output message="s0:DiskSizesListSoapOut" />
+    </operation>
+    <operation name="ProductDiskSizesListDataset">
+      <input message="s0:ProductDiskSizesListDatasetSoapIn" />
+      <output message="s0:ProductDiskSizesListDatasetSoapOut" />
+    </operation>
+    <operation name="ProductDiskSizesList">
+      <input message="s0:ProductDiskSizesListSoapIn" />
+      <output message="s0:ProductDiskSizesListSoapOut" />
+    </operation>
+    <operation name="ProductDiskSizeExist">
+      <input message="s0:ProductDiskSizeExistSoapIn" />
+      <output message="s0:ProductDiskSizeExistSoapOut" />
+    </operation>
+    <operation name="ProductGetProductClass">
+      <input message="s0:ProductGetProductClassSoapIn" />
+      <output message="s0:ProductGetProductClassSoapOut" />
+    </operation>
+    <operation name="GetProductDiskSize">
+      <input message="s0:GetProductDiskSizeSoapIn" />
+      <output message="s0:GetProductDiskSizeSoapOut" />
+    </operation>
+    <operation name="DiskSizesDelete">
+      <input message="s0:DiskSizesDeleteSoapIn" />
+      <output message="s0:DiskSizesDeleteSoapOut" />
+    </operation>
+    <operation name="ChannelsInsert">
+      <input message="s0:ChannelsInsertSoapIn" />
+      <output message="s0:ChannelsInsertSoapOut" />
+    </operation>
+    <operation name="ChannelsList">
+      <input message="s0:ChannelsListSoapIn" />
+      <output message="s0:ChannelsListSoapOut" />
+    </operation>
+    <operation name="SignatureListToDataset">
+      <input message="s0:SignatureListToDatasetSoapIn" />
+      <output message="s0:SignatureListToDatasetSoapOut" />
+    </operation>
+    <operation name="SignatureList">
+      <input message="s0:SignatureListSoapIn" />
+      <output message="s0:SignatureListSoapOut" />
+    </operation>
+    <operation name="SignatureInsert">
+      <input message="s0:SignatureInsertSoapIn" />
+      <output message="s0:SignatureInsertSoapOut" />
+    </operation>
+    <operation name="SignatureDelete">
+      <input message="s0:SignatureDeleteSoapIn" />
+      <output message="s0:SignatureDeleteSoapOut" />
+    </operation>
+    <operation name="SignatureCanDelete">
+      <input message="s0:SignatureCanDeleteSoapIn" />
+      <output message="s0:SignatureCanDeleteSoapOut" />
+    </operation>
+    <operation name="SignatureGetByKey">
+      <input message="s0:SignatureGetByKeySoapIn" />
+      <output message="s0:SignatureGetByKeySoapOut" />
+    </operation>
+    <operation name="SignatureGetByName">
+      <input message="s0:SignatureGetByNameSoapIn" />
+      <output message="s0:SignatureGetByNameSoapOut" />
+    </operation>
+    <operation name="GetLastUpdateOfTable">
+      <input message="s0:GetLastUpdateOfTableSoapIn" />
+      <output message="s0:GetLastUpdateOfTableSoapOut" />
+    </operation>
+    <operation name="GetLastUpdateOfDiskSize">
+      <input message="s0:GetLastUpdateOfDiskSizeSoapIn" />
+      <output message="s0:GetLastUpdateOfDiskSizeSoapOut" />
+    </operation>
+    <operation name="TesterTypesExist">
+      <input message="s0:TesterTypesExistSoapIn" />
+      <output message="s0:TesterTypesExistSoapOut" />
+    </operation>
+    <operation name="TesterTypesInsert">
+      <input message="s0:TesterTypesInsertSoapIn" />
+      <output message="s0:TesterTypesInsertSoapOut" />
+    </operation>
+    <operation name="TesterTypesList">
+      <input message="s0:TesterTypesListSoapIn" />
+      <output message="s0:TesterTypesListSoapOut" />
+    </operation>
+    <operation name="GradesListToDataset">
+      <input message="s0:GradesListToDatasetSoapIn" />
+      <output message="s0:GradesListToDatasetSoapOut" />
+    </operation>
+    <operation name="GradesList">
+      <input message="s0:GradesListSoapIn" />
+      <output message="s0:GradesListSoapOut" />
+    </operation>
+    <operation name="GradeMappingGetSignatureKey">
+      <input message="s0:GradeMappingGetSignatureKeySoapIn" />
+      <output message="s0:GradeMappingGetSignatureKeySoapOut" />
+    </operation>
+    <operation name="GradeMappingGetSignature">
+      <input message="s0:GradeMappingGetSignatureSoapIn" />
+      <output message="s0:GradeMappingGetSignatureSoapOut" />
+    </operation>
+    <operation name="GradesInsert">
+      <input message="s0:GradesInsertSoapIn" />
+      <output message="s0:GradesInsertSoapOut" />
+    </operation>
+    <operation name="GradesDelete">
+      <input message="s0:GradesDeleteSoapIn" />
+      <output message="s0:GradesDeleteSoapOut" />
+    </operation>
+    <operation name="GradeMappingGetUnknownSignature">
+      <input message="s0:GradeMappingGetUnknownSignatureSoapIn" />
+      <output message="s0:GradeMappingGetUnknownSignatureSoapOut" />
+    </operation>
+    <operation name="ApplicationDataInsert">
+      <input message="s0:ApplicationDataInsertSoapIn" />
+      <output message="s0:ApplicationDataInsertSoapOut" />
+    </operation>
+    <operation name="ApplicationDataGetValue">
+      <input message="s0:ApplicationDataGetValueSoapIn" />
+      <output message="s0:ApplicationDataGetValueSoapOut" />
+    </operation>
+  </portType>
+  <binding name="CategorySoap" type="s0:CategorySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="HelloWorld">
+      <soap:operation soapAction="http://siglaz.com/HelloWorld" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TestConnection">
+      <soap:operation soapAction="http://siglaz.com/TestConnection_DDADB" style="document" />
+      <input name="TestConnection_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="TestConnection_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TestConnection">
+      <soap:operation soapAction="http://siglaz.com/TestConnection_DDAStagingArea" style="document" />
+      <input name="TestConnection_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="TestConnection_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FabExist">
+      <soap:operation soapAction="http://siglaz.com/FabExist" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FabInsert">
+      <soap:operation soapAction="http://siglaz.com/FabInsertName" style="document" />
+      <input name="FabInsertName">
+        <soap:body use="literal" />
+      </input>
+      <output name="FabInsertName">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FabInsert">
+      <soap:operation soapAction="http://siglaz.com/FabInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FabList">
+      <soap:operation soapAction="http://siglaz.com/FabList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFabByFabID">
+      <soap:operation soapAction="http://siglaz.com/GetFabByFabID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="StationInsert">
+      <soap:operation soapAction="http://siglaz.com/StationInsertName" style="document" />
+      <input name="StationInsertName">
+        <soap:body use="literal" />
+      </input>
+      <output name="StationInsertName">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="StationInsert">
+      <soap:operation soapAction="http://siglaz.com/StationInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="StationList">
+      <soap:operation soapAction="http://siglaz.com/StationList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductInsert">
+      <soap:operation soapAction="http://siglaz.com/ProductInsertName" style="document" />
+      <input name="ProductInsertName">
+        <soap:body use="literal" />
+      </input>
+      <output name="ProductInsertName">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductInsert">
+      <soap:operation soapAction="http://siglaz.com/ProductInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductListDataset">
+      <soap:operation soapAction="http://siglaz.com/ProductListDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductList">
+      <soap:operation soapAction="http://siglaz.com/ProductList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductDelete">
+      <soap:operation soapAction="http://siglaz.com/ProductDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductCanDelete">
+      <soap:operation soapAction="http://siglaz.com/ProductCanDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="WordCellsInsert">
+      <soap:operation soapAction="http://siglaz.com/WordCellsInsertName" style="document" />
+      <input name="WordCellsInsertName">
+        <soap:body use="literal" />
+      </input>
+      <output name="WordCellsInsertName">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="WordCellsInsert">
+      <soap:operation soapAction="http://siglaz.com/WordCellsInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="WordCellsList">
+      <soap:operation soapAction="http://siglaz.com/WordCellsList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DiskSizesInsert">
+      <soap:operation soapAction="http://siglaz.com/DiskSizesInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DiskSizesListDataset">
+      <soap:operation soapAction="http://siglaz.com/DiskSizesListDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DiskSizesList">
+      <soap:operation soapAction="http://siglaz.com/DiskSizesList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductDiskSizesListDataset">
+      <soap:operation soapAction="http://siglaz.com/ProductDiskSizesListDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductDiskSizesList">
+      <soap:operation soapAction="http://siglaz.com/ProductDiskSizesList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductDiskSizeExist">
+      <soap:operation soapAction="http://siglaz.com/ProductDiskSizeExist" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ProductGetProductClass">
+      <soap:operation soapAction="http://siglaz.com/ProductGetProductClass" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetProductDiskSize">
+      <soap:operation soapAction="http://siglaz.com/GetProductDiskSize" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DiskSizesDelete">
+      <soap:operation soapAction="http://siglaz.com/DiskSizesDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ChannelsInsert">
+      <soap:operation soapAction="http://siglaz.com/ChannelsInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ChannelsList">
+      <soap:operation soapAction="http://siglaz.com/ChannelsList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureListToDataset">
+      <soap:operation soapAction="http://siglaz.com/SignatureListToDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureList">
+      <soap:operation soapAction="http://siglaz.com/SignatureList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureInsert">
+      <soap:operation soapAction="http://siglaz.com/SignatureInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureDelete">
+      <soap:operation soapAction="http://siglaz.com/SignatureDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureCanDelete">
+      <soap:operation soapAction="http://siglaz.com/SignatureCanDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureGetByKey">
+      <soap:operation soapAction="http://siglaz.com/SignatureGetByKey" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SignatureGetByName">
+      <soap:operation soapAction="http://siglaz.com/SignatureGetByName" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetLastUpdateOfTable">
+      <soap:operation soapAction="http://siglaz.com/GetLastUpdateOfTable" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetLastUpdateOfDiskSize">
+      <soap:operation soapAction="http://siglaz.com/GetLastUpdateOfDiskSize" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TesterTypesExist">
+      <soap:operation soapAction="http://siglaz.com/TesterTypesExist" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TesterTypesInsert">
+      <soap:operation soapAction="http://siglaz.com/TesterTypesInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TesterTypesList">
+      <soap:operation soapAction="http://siglaz.com/TesterTypesList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradesListToDataset">
+      <soap:operation soapAction="http://siglaz.com/GradesListToDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradesList">
+      <soap:operation soapAction="http://siglaz.com/GradesList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradeMappingGetSignatureKey">
+      <soap:operation soapAction="http://siglaz.com/GradeMappingGetSignatureKey" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradeMappingGetSignature">
+      <soap:operation soapAction="http://siglaz.com/GradeMappingGetSignature" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradesInsert">
+      <soap:operation soapAction="http://siglaz.com/GradesInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradesDelete">
+      <soap:operation soapAction="http://siglaz.com/GradesDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GradeMappingGetUnknownSignature">
+      <soap:operation soapAction="http://siglaz.com/GradeMappingGetUnknownSignature" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ApplicationDataInsert">
+      <soap:operation soapAction="http://siglaz.com/ApplicationDataInsert" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ApplicationDataGetValue">
+      <soap:operation soapAction="http://siglaz.com/ApplicationDataGetValue" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Category">
+    <port name="CategorySoap" binding="s0:CategorySoap">
+      <soap:address location="http://localhost/DDAWebService/Category.asmx" />
+    </port>
+  </service>
+</definitions>

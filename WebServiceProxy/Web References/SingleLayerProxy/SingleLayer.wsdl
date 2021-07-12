@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://siglaz.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="GetResultThumbnail_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnail_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultThumbnail_DDADBResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnailFlat_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnailFlat_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultThumbnailFlat_DDADBResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultRawData_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultRawData_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultRawData_DDADBResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleLayerPaging_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SingleLayerRecipe">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:DataSourceRecipe" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DataSourceRecipe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TimeFilter" type="s0:TimeFilter" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueryCondition" type="s0:QueryCondition" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableLayout" type="s0:TableLayout" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewSurface" type="s0:ViewSurface" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewType" type="s0:ViewType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExcludeDuplicateDisk" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupBy" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s0:TimeRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="From" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="To" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="N" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TimeRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="LastOneHour" />
+          <s:enumeration value="Last6Hours" />
+          <s:enumeration value="Last12Hours" />
+          <s:enumeration value="LastOneDay" />
+          <s:enumeration value="LastOneWeek" />
+          <s:enumeration value="Last2Weeks" />
+          <s:enumeration value="Last3Weeks" />
+          <s:enumeration value="LastOneMonth" />
+          <s:enumeration value="FromDateToDate" />
+          <s:enumeration value="LastNHours" />
+          <s:enumeration value="LastNDays" />
+          <s:enumeration value="LastNWeeks" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QueryCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConditionType" type="s0:ConditionType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConditionList" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOrAnd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFilter" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ConditionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Basic" />
+          <s:enumeration value="Advanced" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TableLayout">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayColumns" type="s0:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderBy" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ViewSurface">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="Top" />
+          <s:enumeration value="Bottom" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ViewType">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="SourceWithSignature" />
+          <s:enumeration value="SourceWithoutSignature" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSingleLayerPaging_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSingleLayerPaging_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSetResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalRow" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s0:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetHintData_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintData_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceHasSignature_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceHasSignature_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurfaceHasSignature_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultBySurfaceKey_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey2_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey2_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultBySurfaceKey2_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultByResultDetailKey_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultByResultDetailKey_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultByResultDetailKey_DDADBResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SingleLayer_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SingleLayer_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SingleLayer_DDADBResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultBase">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id64" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="id32" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id16" type="s:short" />
+              <s:element minOccurs="0" maxOccurs="1" name="idstring" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetTotalRow_SurfaceHasSignature_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceHasSignature_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SurfaceHasSignature_DDADBResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChart_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChart_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureParetoChart_DDADBResult" type="s0:ChartResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChartResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChartTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataTitle2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CategoryValues" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LabelValues" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataValues" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataValues2" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ParetoValues" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxDisk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxYield" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="IndividualChartResults" type="s0:IndividualChartResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IndividualChartResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GroupByName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s0:ChartResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSignatureParetoChartIndividualResource_TestCell_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChartIndividualResource_TestCell_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureParetoChartIndividualResource_TestCell_DDADBResult" type="s0:ChartResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnail_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DDADBType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DDADB" />
+          <s:enumeration value="DDAStagingArea" />
+          <s:enumeration value="DDAArchives" />
+          <s:enumeration value="DDADataMarts" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetResultThumbnail_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultThumbnail_DDAStagingAreaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnailFlat_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultThumbnailFlat_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultThumbnailFlat_DDAStagingAreaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultRawData_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultRawData_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultRawData_DDAStagingAreaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleLayerPaging_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleLayerPaging_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSingleLayerPaging_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintData_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceHasSignature_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceHasSignature_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurfaceHasSignature_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultBySurfaceKey_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey2_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultBySurfaceKey2_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultBySurfaceKey2_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultByResultDetailKey_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resultDetailKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultByResultDetailKey_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultByResultDetailKey_DDAStagingAreaResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SingleLayer_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SingleLayer_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SingleLayer_DDAStagingAreaResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceHasSignature_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceHasSignature_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SurfaceHasSignature_DDAStagingAreaResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChart_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChart_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureParetoChart_DDAStagingAreaResult" type="s0:ChartResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="s0:SingleLayerRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s0:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaResult" type="s0:ChartResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetResultThumbnail_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultThumbnail_DDADB" />
+  </message>
+  <message name="GetResultThumbnail_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultThumbnail_DDADBResponse" />
+  </message>
+  <message name="GetResultThumbnailFlat_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultThumbnailFlat_DDADB" />
+  </message>
+  <message name="GetResultThumbnailFlat_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultThumbnailFlat_DDADBResponse" />
+  </message>
+  <message name="GetResultRawData_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultRawData_DDADB" />
+  </message>
+  <message name="GetResultRawData_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultRawData_DDADBResponse" />
+  </message>
+  <message name="GetSingleLayerPaging_DDADBSoapIn">
+    <part name="parameters" element="s0:GetSingleLayerPaging_DDADB" />
+  </message>
+  <message name="GetSingleLayerPaging_DDADBSoapOut">
+    <part name="parameters" element="s0:GetSingleLayerPaging_DDADBResponse" />
+  </message>
+  <message name="GetHintData_DDADBSoapIn">
+    <part name="parameters" element="s0:GetHintData_DDADB" />
+  </message>
+  <message name="GetHintData_DDADBSoapOut">
+    <part name="parameters" element="s0:GetHintData_DDADBResponse" />
+  </message>
+  <message name="GetSurfaceHasSignature_DDADBSoapIn">
+    <part name="parameters" element="s0:GetSurfaceHasSignature_DDADB" />
+  </message>
+  <message name="GetSurfaceHasSignature_DDADBSoapOut">
+    <part name="parameters" element="s0:GetSurfaceHasSignature_DDADBResponse" />
+  </message>
+  <message name="GetResultBySurfaceKey_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultBySurfaceKey_DDADB" />
+  </message>
+  <message name="GetResultBySurfaceKey_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultBySurfaceKey_DDADBResponse" />
+  </message>
+  <message name="GetResultBySurfaceKey2_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultBySurfaceKey2_DDADB" />
+  </message>
+  <message name="GetResultBySurfaceKey2_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultBySurfaceKey2_DDADBResponse" />
+  </message>
+  <message name="GetResultByResultDetailKey_DDADBSoapIn">
+    <part name="parameters" element="s0:GetResultByResultDetailKey_DDADB" />
+  </message>
+  <message name="GetResultByResultDetailKey_DDADBSoapOut">
+    <part name="parameters" element="s0:GetResultByResultDetailKey_DDADBResponse" />
+  </message>
+  <message name="GetTotalRow_SingleLayer_DDADBSoapIn">
+    <part name="parameters" element="s0:GetTotalRow_SingleLayer_DDADB" />
+  </message>
+  <message name="GetTotalRow_SingleLayer_DDADBSoapOut">
+    <part name="parameters" element="s0:GetTotalRow_SingleLayer_DDADBResponse" />
+  </message>
+  <message name="GetTotalRow_SurfaceHasSignature_DDADBSoapIn">
+    <part name="parameters" element="s0:GetTotalRow_SurfaceHasSignature_DDADB" />
+  </message>
+  <message name="GetTotalRow_SurfaceHasSignature_DDADBSoapOut">
+    <part name="parameters" element="s0:GetTotalRow_SurfaceHasSignature_DDADBResponse" />
+  </message>
+  <message name="GetSignatureParetoChart_DDADBSoapIn">
+    <part name="parameters" element="s0:GetSignatureParetoChart_DDADB" />
+  </message>
+  <message name="GetSignatureParetoChart_DDADBSoapOut">
+    <part name="parameters" element="s0:GetSignatureParetoChart_DDADBResponse" />
+  </message>
+  <message name="GetSignatureParetoChartIndividualResource_TestCell_DDADBSoapIn">
+    <part name="parameters" element="s0:GetSignatureParetoChartIndividualResource_TestCell_DDADB" />
+  </message>
+  <message name="GetSignatureParetoChartIndividualResource_TestCell_DDADBSoapOut">
+    <part name="parameters" element="s0:GetSignatureParetoChartIndividualResource_TestCell_DDADBResponse" />
+  </message>
+  <message name="GetResultThumbnail_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultThumbnail_DDAStagingArea" />
+  </message>
+  <message name="GetResultThumbnail_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultThumbnail_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetResultThumbnailFlat_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultThumbnailFlat_DDAStagingArea" />
+  </message>
+  <message name="GetResultThumbnailFlat_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultThumbnailFlat_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetResultRawData_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultRawData_DDAStagingArea" />
+  </message>
+  <message name="GetResultRawData_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultRawData_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetSingleLayerPaging_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetSingleLayerPaging_DDAStagingArea" />
+  </message>
+  <message name="GetSingleLayerPaging_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetSingleLayerPaging_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetHintData_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetHintData_DDAStagingArea" />
+  </message>
+  <message name="GetHintData_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetHintData_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetSurfaceHasSignature_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetSurfaceHasSignature_DDAStagingArea" />
+  </message>
+  <message name="GetSurfaceHasSignature_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetSurfaceHasSignature_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetResultBySurfaceKey_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultBySurfaceKey_DDAStagingArea" />
+  </message>
+  <message name="GetResultBySurfaceKey_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultBySurfaceKey_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetResultBySurfaceKey2_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultBySurfaceKey2_DDAStagingArea" />
+  </message>
+  <message name="GetResultBySurfaceKey2_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultBySurfaceKey2_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetResultByResultDetailKey_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetResultByResultDetailKey_DDAStagingArea" />
+  </message>
+  <message name="GetResultByResultDetailKey_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetResultByResultDetailKey_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetTotalRow_SingleLayer_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetTotalRow_SingleLayer_DDAStagingArea" />
+  </message>
+  <message name="GetTotalRow_SingleLayer_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetTotalRow_SingleLayer_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetTotalRow_SurfaceHasSignature_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetTotalRow_SurfaceHasSignature_DDAStagingArea" />
+  </message>
+  <message name="GetTotalRow_SurfaceHasSignature_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetTotalRow_SurfaceHasSignature_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetSignatureParetoChart_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetSignatureParetoChart_DDAStagingArea" />
+  </message>
+  <message name="GetSignatureParetoChart_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetSignatureParetoChart_DDAStagingAreaResponse" />
+  </message>
+  <message name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaSoapIn">
+    <part name="parameters" element="s0:GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea" />
+  </message>
+  <message name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaSoapOut">
+    <part name="parameters" element="s0:GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaResponse" />
+  </message>
+  <portType name="SingleLayerSoap">
+    <operation name="GetResultThumbnail">
+      <input name="GetResultThumbnail_DDADB" message="s0:GetResultThumbnail_DDADBSoapIn" />
+      <output name="GetResultThumbnail_DDADB" message="s0:GetResultThumbnail_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultThumbnailFlat">
+      <input name="GetResultThumbnailFlat_DDADB" message="s0:GetResultThumbnailFlat_DDADBSoapIn" />
+      <output name="GetResultThumbnailFlat_DDADB" message="s0:GetResultThumbnailFlat_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultRawData">
+      <input name="GetResultRawData_DDADB" message="s0:GetResultRawData_DDADBSoapIn" />
+      <output name="GetResultRawData_DDADB" message="s0:GetResultRawData_DDADBSoapOut" />
+    </operation>
+    <operation name="GetSingleLayerPaging">
+      <input name="GetSingleLayerPaging_DDADB" message="s0:GetSingleLayerPaging_DDADBSoapIn" />
+      <output name="GetSingleLayerPaging_DDADB" message="s0:GetSingleLayerPaging_DDADBSoapOut" />
+    </operation>
+    <operation name="GetHintData">
+      <input name="GetHintData_DDADB" message="s0:GetHintData_DDADBSoapIn" />
+      <output name="GetHintData_DDADB" message="s0:GetHintData_DDADBSoapOut" />
+    </operation>
+    <operation name="GetSurfaceHasSignature">
+      <input name="GetSurfaceHasSignature_DDADB" message="s0:GetSurfaceHasSignature_DDADBSoapIn" />
+      <output name="GetSurfaceHasSignature_DDADB" message="s0:GetSurfaceHasSignature_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <input name="GetResultBySurfaceKey_DDADB" message="s0:GetResultBySurfaceKey_DDADBSoapIn" />
+      <output name="GetResultBySurfaceKey_DDADB" message="s0:GetResultBySurfaceKey_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <input name="GetResultBySurfaceKey2_DDADB" message="s0:GetResultBySurfaceKey2_DDADBSoapIn" />
+      <output name="GetResultBySurfaceKey2_DDADB" message="s0:GetResultBySurfaceKey2_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultByResultDetailKey">
+      <input name="GetResultByResultDetailKey_DDADB" message="s0:GetResultByResultDetailKey_DDADBSoapIn" />
+      <output name="GetResultByResultDetailKey_DDADB" message="s0:GetResultByResultDetailKey_DDADBSoapOut" />
+    </operation>
+    <operation name="GetTotalRow_SingleLayer">
+      <input name="GetTotalRow_SingleLayer_DDADB" message="s0:GetTotalRow_SingleLayer_DDADBSoapIn" />
+      <output name="GetTotalRow_SingleLayer_DDADB" message="s0:GetTotalRow_SingleLayer_DDADBSoapOut" />
+    </operation>
+    <operation name="GetTotalRow_SurfaceHasSignature">
+      <input name="GetTotalRow_SurfaceHasSignature_DDADB" message="s0:GetTotalRow_SurfaceHasSignature_DDADBSoapIn" />
+      <output name="GetTotalRow_SurfaceHasSignature_DDADB" message="s0:GetTotalRow_SurfaceHasSignature_DDADBSoapOut" />
+    </operation>
+    <operation name="GetSignatureParetoChart">
+      <input name="GetSignatureParetoChart_DDADB" message="s0:GetSignatureParetoChart_DDADBSoapIn" />
+      <output name="GetSignatureParetoChart_DDADB" message="s0:GetSignatureParetoChart_DDADBSoapOut" />
+    </operation>
+    <operation name="GetSignatureParetoChartIndividualResource_TestCell">
+      <input name="GetSignatureParetoChartIndividualResource_TestCell_DDADB" message="s0:GetSignatureParetoChartIndividualResource_TestCell_DDADBSoapIn" />
+      <output name="GetSignatureParetoChartIndividualResource_TestCell_DDADB" message="s0:GetSignatureParetoChartIndividualResource_TestCell_DDADBSoapOut" />
+    </operation>
+    <operation name="GetResultThumbnail">
+      <input name="GetResultThumbnail_DDAStagingArea" message="s0:GetResultThumbnail_DDAStagingAreaSoapIn" />
+      <output name="GetResultThumbnail_DDAStagingArea" message="s0:GetResultThumbnail_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetResultThumbnailFlat">
+      <input name="GetResultThumbnailFlat_DDAStagingArea" message="s0:GetResultThumbnailFlat_DDAStagingAreaSoapIn" />
+      <output name="GetResultThumbnailFlat_DDAStagingArea" message="s0:GetResultThumbnailFlat_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetResultRawData">
+      <input name="GetResultRawData_DDAStagingArea" message="s0:GetResultRawData_DDAStagingAreaSoapIn" />
+      <output name="GetResultRawData_DDAStagingArea" message="s0:GetResultRawData_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetSingleLayerPaging">
+      <input name="GetSingleLayerPaging_DDAStagingArea" message="s0:GetSingleLayerPaging_DDAStagingAreaSoapIn" />
+      <output name="GetSingleLayerPaging_DDAStagingArea" message="s0:GetSingleLayerPaging_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetHintData">
+      <input name="GetHintData_DDAStagingArea" message="s0:GetHintData_DDAStagingAreaSoapIn" />
+      <output name="GetHintData_DDAStagingArea" message="s0:GetHintData_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetSurfaceHasSignature">
+      <input name="GetSurfaceHasSignature_DDAStagingArea" message="s0:GetSurfaceHasSignature_DDAStagingAreaSoapIn" />
+      <output name="GetSurfaceHasSignature_DDAStagingArea" message="s0:GetSurfaceHasSignature_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <input name="GetResultBySurfaceKey_DDAStagingArea" message="s0:GetResultBySurfaceKey_DDAStagingAreaSoapIn" />
+      <output name="GetResultBySurfaceKey_DDAStagingArea" message="s0:GetResultBySurfaceKey_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <input name="GetResultBySurfaceKey2_DDAStagingArea" message="s0:GetResultBySurfaceKey2_DDAStagingAreaSoapIn" />
+      <output name="GetResultBySurfaceKey2_DDAStagingArea" message="s0:GetResultBySurfaceKey2_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetResultByResultDetailKey">
+      <input name="GetResultByResultDetailKey_DDAStagingArea" message="s0:GetResultByResultDetailKey_DDAStagingAreaSoapIn" />
+      <output name="GetResultByResultDetailKey_DDAStagingArea" message="s0:GetResultByResultDetailKey_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetTotalRow_SingleLayer">
+      <input name="GetTotalRow_SingleLayer_DDAStagingArea" message="s0:GetTotalRow_SingleLayer_DDAStagingAreaSoapIn" />
+      <output name="GetTotalRow_SingleLayer_DDAStagingArea" message="s0:GetTotalRow_SingleLayer_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetTotalRow_SurfaceHasSignature">
+      <input name="GetTotalRow_SurfaceHasSignature_DDAStagingArea" message="s0:GetTotalRow_SurfaceHasSignature_DDAStagingAreaSoapIn" />
+      <output name="GetTotalRow_SurfaceHasSignature_DDAStagingArea" message="s0:GetTotalRow_SurfaceHasSignature_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetSignatureParetoChart">
+      <input name="GetSignatureParetoChart_DDAStagingArea" message="s0:GetSignatureParetoChart_DDAStagingAreaSoapIn" />
+      <output name="GetSignatureParetoChart_DDAStagingArea" message="s0:GetSignatureParetoChart_DDAStagingAreaSoapOut" />
+    </operation>
+    <operation name="GetSignatureParetoChartIndividualResource_TestCell">
+      <input name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea" message="s0:GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaSoapIn" />
+      <output name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea" message="s0:GetSignatureParetoChartIndividualResource_TestCell_DDAStagingAreaSoapOut" />
+    </operation>
+  </portType>
+  <binding name="SingleLayerSoap" type="s0:SingleLayerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetResultThumbnail">
+      <soap:operation soapAction="http://siglaz.com/GetResultThumbnail_DDADB" style="document" />
+      <input name="GetResultThumbnail_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultThumbnail_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultThumbnailFlat">
+      <soap:operation soapAction="http://siglaz.com/GetResultThumbnailFlat_DDADB" style="document" />
+      <input name="GetResultThumbnailFlat_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultThumbnailFlat_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultRawData">
+      <soap:operation soapAction="http://siglaz.com/GetResultRawData_DDADB" style="document" />
+      <input name="GetResultRawData_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultRawData_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSingleLayerPaging">
+      <soap:operation soapAction="http://siglaz.com/GetSingleLayerPaging_DDADB" style="document" />
+      <input name="GetSingleLayerPaging_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSingleLayerPaging_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetHintData">
+      <soap:operation soapAction="http://siglaz.com/GetHintData_DDADB" style="document" />
+      <input name="GetHintData_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetHintData_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSurfaceHasSignature">
+      <soap:operation soapAction="http://siglaz.com/GetSurfaceHasSignature_DDADB" style="document" />
+      <input name="GetSurfaceHasSignature_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSurfaceHasSignature_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultBySurfaceKey_DDADB" style="document" />
+      <input name="GetResultBySurfaceKey_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultBySurfaceKey_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultBySurfaceKey2_DDADB" style="document" />
+      <input name="GetResultBySurfaceKey2_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultBySurfaceKey2_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultByResultDetailKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultByResultDetailKey_DDADB" style="document" />
+      <input name="GetResultByResultDetailKey_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultByResultDetailKey_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTotalRow_SingleLayer">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SingleLayer_DDADB" style="document" />
+      <input name="GetTotalRow_SingleLayer_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetTotalRow_SingleLayer_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTotalRow_SurfaceHasSignature">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SurfaceHasSignature_DDADB" style="document" />
+      <input name="GetTotalRow_SurfaceHasSignature_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetTotalRow_SurfaceHasSignature_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSignatureParetoChart">
+      <soap:operation soapAction="http://siglaz.com/GetSignatureParetoChart_DDADB" style="document" />
+      <input name="GetSignatureParetoChart_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSignatureParetoChart_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSignatureParetoChartIndividualResource_TestCell">
+      <soap:operation soapAction="http://siglaz.com/GetSignatureParetoChartIndividualResource_TestCell_DDADB" style="document" />
+      <input name="GetSignatureParetoChartIndividualResource_TestCell_DDADB">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSignatureParetoChartIndividualResource_TestCell_DDADB">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultThumbnail">
+      <soap:operation soapAction="http://siglaz.com/GetResultThumbnail_DDAStagingArea" style="document" />
+      <input name="GetResultThumbnail_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultThumbnail_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultThumbnailFlat">
+      <soap:operation soapAction="http://siglaz.com/GetResultThumbnailFlat_DDAStagingArea" style="document" />
+      <input name="GetResultThumbnailFlat_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultThumbnailFlat_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultRawData">
+      <soap:operation soapAction="http://siglaz.com/GetResultRawData_DDAStagingArea" style="document" />
+      <input name="GetResultRawData_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultRawData_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSingleLayerPaging">
+      <soap:operation soapAction="http://siglaz.com/GetSingleLayerPaging_DDAStagingArea" style="document" />
+      <input name="GetSingleLayerPaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSingleLayerPaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetHintData">
+      <soap:operation soapAction="http://siglaz.com/GetHintData_DDAStagingArea" style="document" />
+      <input name="GetHintData_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetHintData_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSurfaceHasSignature">
+      <soap:operation soapAction="http://siglaz.com/GetSurfaceHasSignature_DDAStagingArea" style="document" />
+      <input name="GetSurfaceHasSignature_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSurfaceHasSignature_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultBySurfaceKey_DDAStagingArea" style="document" />
+      <input name="GetResultBySurfaceKey_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultBySurfaceKey_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultBySurfaceKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultBySurfaceKey2_DDAStagingArea" style="document" />
+      <input name="GetResultBySurfaceKey2_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultBySurfaceKey2_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetResultByResultDetailKey">
+      <soap:operation soapAction="http://siglaz.com/GetResultByResultDetailKey_DDAStagingArea" style="document" />
+      <input name="GetResultByResultDetailKey_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetResultByResultDetailKey_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTotalRow_SingleLayer">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SingleLayer_DDAStagingArea" style="document" />
+      <input name="GetTotalRow_SingleLayer_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetTotalRow_SingleLayer_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTotalRow_SurfaceHasSignature">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SurfaceHasSignature_DDAStagingArea" style="document" />
+      <input name="GetTotalRow_SurfaceHasSignature_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetTotalRow_SurfaceHasSignature_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSignatureParetoChart">
+      <soap:operation soapAction="http://siglaz.com/GetSignatureParetoChart_DDAStagingArea" style="document" />
+      <input name="GetSignatureParetoChart_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSignatureParetoChart_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetSignatureParetoChartIndividualResource_TestCell">
+      <soap:operation soapAction="http://siglaz.com/GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea" style="document" />
+      <input name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetSignatureParetoChartIndividualResource_TestCell_DDAStagingArea">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="SingleLayer">
+    <port name="SingleLayerSoap" binding="s0:SingleLayerSoap">
+      <soap:address location="http://localhost/DDAWebService/SingleLayer.asmx" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://siglaz.com" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="DiskInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="disk" type="tns:Disk" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Disk">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FabKey" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="TesterType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TesterTypeId" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiskKey" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiskID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BinNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TestGrade" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SlotNum" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotIDCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CassetteID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StationKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="WordCell" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WordCellKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiskSizeContainDiameter" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InnerDiameter" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="OuterDiameter" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="L2_Top_Corr_cts" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="L2_Bot_Corr_cts" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="L2_Top_NCorr_cts" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="L2_Bot_NCorr_cts" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TestDiskDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DiskInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DiskInsertResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurfaceInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="disk" type="tns:Disk" />
+            <s:element minOccurs="0" maxOccurs="1" name="surface" type="tns:Surface" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Surface">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SurfaceKey" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="TestDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TopBottom" type="tns:eSurface" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfDefect" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Loaded" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefectList" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoCompress" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawData" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceThumbnail" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceThumbnailFlat" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eSurface">
+        <s:restriction base="s:string">
+          <s:enumeration value="Top" />
+          <s:enumeration value="Bottom" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SurfaceInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SurfaceInsertResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurfaceInsertAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fab" type="tns:Fab" />
+            <s:element minOccurs="0" maxOccurs="1" name="disk" type="tns:Disk" />
+            <s:element minOccurs="0" maxOccurs="1" name="surface" type="tns:Surface" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Fab">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SurfaceInsertAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SurfaceInsertAllResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnail_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnail_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceThumbnail_DDADBResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnailFlat_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnailFlat_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceThumbnailFlat_DDADBResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceRawData_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceRawData_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceRawData_DDADBResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSourcePaging_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="tns:DataSourceRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSourceRecipe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TimeFilter" type="tns:TimeFilter" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueryCondition" type="tns:QueryCondition" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableLayout" type="tns:TableLayout" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewSurface" type="tns:ViewSurface" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewType" type="tns:ViewType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExcludeDuplicateDisk" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:TimeRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="From" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="To" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="N" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TimeRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="LastOneHour" />
+          <s:enumeration value="Last6Hours" />
+          <s:enumeration value="Last12Hours" />
+          <s:enumeration value="LastOneDay" />
+          <s:enumeration value="LastOneWeek" />
+          <s:enumeration value="Last2Weeks" />
+          <s:enumeration value="Last3Weeks" />
+          <s:enumeration value="LastOneMonth" />
+          <s:enumeration value="FromDateToDate" />
+          <s:enumeration value="LastNHours" />
+          <s:enumeration value="LastNDays" />
+          <s:enumeration value="LastNWeeks" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QueryCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConditionType" type="tns:ConditionType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConditionList" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOrAnd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFilter" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ConditionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Basic" />
+          <s:enumeration value="Advanced" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TableLayout">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayColumns" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderBy" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ViewSurface">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="Top" />
+          <s:enumeration value="Bottom" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ViewType">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="SourceWithSignature" />
+          <s:enumeration value="SourceWithoutSignature" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDataSourcePaging_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSourcePaging_DDADBResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSetResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalRow" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetHintData_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintData_DDADBResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintDataOfDisk_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintDataOfDisk_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintDataOfDisk_DDADBResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceByDisk_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="diskKey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceByDisk_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurfaceByDisk_DDADBResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceOfDiskPaging_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="tns:DataSourceRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceOfDiskPaging_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceOfDiskPaging_DDADBResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceOfDisk_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceOfDisk_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SurfaceOfDisk_DDADBResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultBase">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id64" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="id32" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id16" type="s:short" />
+              <s:element minOccurs="0" maxOccurs="1" name="idstring" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetTotalRow_SourceOfDisk_DDADB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SourceOfDisk_DDADBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SourceOfDisk_DDADBResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnail_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DDADBType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DDADB" />
+          <s:enumeration value="DDAStagingArea" />
+          <s:enumeration value="DDAArchives" />
+          <s:enumeration value="DDADataMarts" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSourceThumbnail_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceThumbnail_DDAStagingAreaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnailFlat_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceThumbnailFlat_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceThumbnailFlat_DDAStagingAreaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceRawData_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfaceKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceRawData_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceRawData_DDAStagingAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSourcePaging_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="tns:DataSourceRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSourcePaging_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSourcePaging_DDAStagingAreaResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintData_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintData_DDAStagingAreaResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintDataOfDisk_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintDataOfDisk_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintDataOfDisk_DDAStagingAreaResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceByDisk_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="diskKey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurfaceByDisk_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurfaceByDisk_DDAStagingAreaResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceOfDiskPaging_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="tns:DataSourceRecipe" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceOfDiskPaging_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceOfDiskPaging_DDAStagingAreaResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceOfDisk_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SurfaceOfDisk_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SurfaceOfDisk_DDAStagingAreaResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SourceOfDisk_DDAStagingArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sqlWhere" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DDADBType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTotalRow_SourceOfDisk_DDAStagingAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTotalRow_SourceOfDisk_DDAStagingAreaResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DiskInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:DiskInsert" />
+  </wsdl:message>
+  <wsdl:message name="DiskInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:DiskInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:SurfaceInsert" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:SurfaceInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceInsertAllSoapIn">
+    <wsdl:part name="parameters" element="tns:SurfaceInsertAll" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceInsertAllSoapOut">
+    <wsdl:part name="parameters" element="tns:SurfaceInsertAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnail_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnail_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnail_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnail_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnailFlat_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnailFlat_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnailFlat_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnailFlat_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceRawData_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceRawData_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceRawData_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceRawData_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSourcePaging_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSourcePaging_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSourcePaging_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSourcePaging_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHintData_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHintData_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetHintData_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHintData_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataOfDisk_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHintDataOfDisk_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataOfDisk_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHintDataOfDisk_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSurfaceByDisk_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByDisk_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetSurfaceByDisk_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByDisk_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceOfDiskPaging_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceOfDiskPaging_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceOfDiskPaging_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceOfDiskPaging_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SurfaceOfDisk_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SurfaceOfDisk_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SurfaceOfDisk_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SurfaceOfDisk_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SourceOfDisk_DDADBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SourceOfDisk_DDADB" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SourceOfDisk_DDADBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SourceOfDisk_DDADBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnail_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnail_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnail_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnail_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnailFlat_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnailFlat_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceThumbnailFlat_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceThumbnailFlat_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceRawData_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceRawData_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceRawData_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceRawData_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSourcePaging_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSourcePaging_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSourcePaging_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSourcePaging_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHintData_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHintData_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetHintData_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHintData_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataOfDisk_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHintDataOfDisk_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataOfDisk_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHintDataOfDisk_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSurfaceByDisk_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByDisk_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetSurfaceByDisk_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByDisk_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceOfDiskPaging_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceOfDiskPaging_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceOfDiskPaging_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceOfDiskPaging_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SurfaceOfDisk_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SurfaceOfDisk_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SurfaceOfDisk_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SurfaceOfDisk_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SourceOfDisk_DDAStagingAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SourceOfDisk_DDAStagingArea" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalRow_SourceOfDisk_DDAStagingAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTotalRow_SourceOfDisk_DDAStagingAreaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SourceSoap">
+    <wsdl:operation name="DiskInsert">
+      <wsdl:input message="tns:DiskInsertSoapIn" />
+      <wsdl:output message="tns:DiskInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceInsert">
+      <wsdl:input message="tns:SurfaceInsertSoapIn" />
+      <wsdl:output message="tns:SurfaceInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceInsertAll">
+      <wsdl:input message="tns:SurfaceInsertAllSoapIn" />
+      <wsdl:output message="tns:SurfaceInsertAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnail">
+      <wsdl:input name="GetSourceThumbnail_DDADB" message="tns:GetSourceThumbnail_DDADBSoapIn" />
+      <wsdl:output name="GetSourceThumbnail_DDADB" message="tns:GetSourceThumbnail_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnailFlat">
+      <wsdl:input name="GetSourceThumbnailFlat_DDADB" message="tns:GetSourceThumbnailFlat_DDADBSoapIn" />
+      <wsdl:output name="GetSourceThumbnailFlat_DDADB" message="tns:GetSourceThumbnailFlat_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceRawData">
+      <wsdl:input name="GetSourceRawData_DDADB" message="tns:GetSourceRawData_DDADBSoapIn" />
+      <wsdl:output name="GetSourceRawData_DDADB" message="tns:GetSourceRawData_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSourcePaging">
+      <wsdl:input name="GetDataSourcePaging_DDADB" message="tns:GetDataSourcePaging_DDADBSoapIn" />
+      <wsdl:output name="GetDataSourcePaging_DDADB" message="tns:GetDataSourcePaging_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <wsdl:input name="GetHintData_DDADB" message="tns:GetHintData_DDADBSoapIn" />
+      <wsdl:output name="GetHintData_DDADB" message="tns:GetHintData_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHintDataOfDisk">
+      <wsdl:input name="GetHintDataOfDisk_DDADB" message="tns:GetHintDataOfDisk_DDADBSoapIn" />
+      <wsdl:output name="GetHintDataOfDisk_DDADB" message="tns:GetHintDataOfDisk_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByDisk">
+      <wsdl:input name="GetSurfaceByDisk_DDADB" message="tns:GetSurfaceByDisk_DDADBSoapIn" />
+      <wsdl:output name="GetSurfaceByDisk_DDADB" message="tns:GetSurfaceByDisk_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceOfDiskPaging">
+      <wsdl:input name="GetSourceOfDiskPaging_DDADB" message="tns:GetSourceOfDiskPaging_DDADBSoapIn" />
+      <wsdl:output name="GetSourceOfDiskPaging_DDADB" message="tns:GetSourceOfDiskPaging_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SurfaceOfDisk">
+      <wsdl:input name="GetTotalRow_SurfaceOfDisk_DDADB" message="tns:GetTotalRow_SurfaceOfDisk_DDADBSoapIn" />
+      <wsdl:output name="GetTotalRow_SurfaceOfDisk_DDADB" message="tns:GetTotalRow_SurfaceOfDisk_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SourceOfDisk">
+      <wsdl:input name="GetTotalRow_SourceOfDisk_DDADB" message="tns:GetTotalRow_SourceOfDisk_DDADBSoapIn" />
+      <wsdl:output name="GetTotalRow_SourceOfDisk_DDADB" message="tns:GetTotalRow_SourceOfDisk_DDADBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnail">
+      <wsdl:input name="GetSourceThumbnail_DDAStagingArea" message="tns:GetSourceThumbnail_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetSourceThumbnail_DDAStagingArea" message="tns:GetSourceThumbnail_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnailFlat">
+      <wsdl:input name="GetSourceThumbnailFlat_DDAStagingArea" message="tns:GetSourceThumbnailFlat_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetSourceThumbnailFlat_DDAStagingArea" message="tns:GetSourceThumbnailFlat_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceRawData">
+      <wsdl:input name="GetSourceRawData_DDAStagingArea" message="tns:GetSourceRawData_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetSourceRawData_DDAStagingArea" message="tns:GetSourceRawData_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSourcePaging">
+      <wsdl:input name="GetDataSourcePaging_DDAStagingArea" message="tns:GetDataSourcePaging_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetDataSourcePaging_DDAStagingArea" message="tns:GetDataSourcePaging_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <wsdl:input name="GetHintData_DDAStagingArea" message="tns:GetHintData_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetHintData_DDAStagingArea" message="tns:GetHintData_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHintDataOfDisk">
+      <wsdl:input name="GetHintDataOfDisk_DDAStagingArea" message="tns:GetHintDataOfDisk_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetHintDataOfDisk_DDAStagingArea" message="tns:GetHintDataOfDisk_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByDisk">
+      <wsdl:input name="GetSurfaceByDisk_DDAStagingArea" message="tns:GetSurfaceByDisk_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetSurfaceByDisk_DDAStagingArea" message="tns:GetSurfaceByDisk_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceOfDiskPaging">
+      <wsdl:input name="GetSourceOfDiskPaging_DDAStagingArea" message="tns:GetSourceOfDiskPaging_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetSourceOfDiskPaging_DDAStagingArea" message="tns:GetSourceOfDiskPaging_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SurfaceOfDisk">
+      <wsdl:input name="GetTotalRow_SurfaceOfDisk_DDAStagingArea" message="tns:GetTotalRow_SurfaceOfDisk_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetTotalRow_SurfaceOfDisk_DDAStagingArea" message="tns:GetTotalRow_SurfaceOfDisk_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SourceOfDisk">
+      <wsdl:input name="GetTotalRow_SourceOfDisk_DDAStagingArea" message="tns:GetTotalRow_SourceOfDisk_DDAStagingAreaSoapIn" />
+      <wsdl:output name="GetTotalRow_SourceOfDisk_DDAStagingArea" message="tns:GetTotalRow_SourceOfDisk_DDAStagingAreaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SourceSoap" type="tns:SourceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="DiskInsert">
+      <soap:operation soapAction="http://siglaz.com/DiskInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceInsert">
+      <soap:operation soapAction="http://siglaz.com/SurfaceInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceInsertAll">
+      <soap:operation soapAction="http://siglaz.com/SurfaceInsertAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnail">
+      <soap:operation soapAction="http://siglaz.com/GetSourceThumbnail_DDADB" style="document" />
+      <wsdl:input name="GetSourceThumbnail_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceThumbnail_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnailFlat">
+      <soap:operation soapAction="http://siglaz.com/GetSourceThumbnailFlat_DDADB" style="document" />
+      <wsdl:input name="GetSourceThumbnailFlat_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceThumbnailFlat_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceRawData">
+      <soap:operation soapAction="http://siglaz.com/GetSourceRawData_DDADB" style="document" />
+      <wsdl:input name="GetSourceRawData_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceRawData_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSourcePaging">
+      <soap:operation soapAction="http://siglaz.com/GetDataSourcePaging_DDADB" style="document" />
+      <wsdl:input name="GetDataSourcePaging_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetDataSourcePaging_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <soap:operation soapAction="http://siglaz.com/GetHintData_DDADB" style="document" />
+      <wsdl:input name="GetHintData_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHintData_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHintDataOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetHintDataOfDisk_DDADB" style="document" />
+      <wsdl:input name="GetHintDataOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHintDataOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByDisk">
+      <soap:operation soapAction="http://siglaz.com/GetSurfaceByDisk_DDADB" style="document" />
+      <wsdl:input name="GetSurfaceByDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSurfaceByDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceOfDiskPaging">
+      <soap:operation soapAction="http://siglaz.com/GetSourceOfDiskPaging_DDADB" style="document" />
+      <wsdl:input name="GetSourceOfDiskPaging_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceOfDiskPaging_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SurfaceOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SurfaceOfDisk_DDADB" style="document" />
+      <wsdl:input name="GetTotalRow_SurfaceOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTotalRow_SurfaceOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SourceOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SourceOfDisk_DDADB" style="document" />
+      <wsdl:input name="GetTotalRow_SourceOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTotalRow_SourceOfDisk_DDADB">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnail">
+      <soap:operation soapAction="http://siglaz.com/GetSourceThumbnail_DDAStagingArea" style="document" />
+      <wsdl:input name="GetSourceThumbnail_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceThumbnail_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceThumbnailFlat">
+      <soap:operation soapAction="http://siglaz.com/GetSourceThumbnailFlat_DDAStagingArea" style="document" />
+      <wsdl:input name="GetSourceThumbnailFlat_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceThumbnailFlat_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceRawData">
+      <soap:operation soapAction="http://siglaz.com/GetSourceRawData_DDAStagingArea" style="document" />
+      <wsdl:input name="GetSourceRawData_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceRawData_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSourcePaging">
+      <soap:operation soapAction="http://siglaz.com/GetDataSourcePaging_DDAStagingArea" style="document" />
+      <wsdl:input name="GetDataSourcePaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetDataSourcePaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <soap:operation soapAction="http://siglaz.com/GetHintData_DDAStagingArea" style="document" />
+      <wsdl:input name="GetHintData_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHintData_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHintDataOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetHintDataOfDisk_DDAStagingArea" style="document" />
+      <wsdl:input name="GetHintDataOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHintDataOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByDisk">
+      <soap:operation soapAction="http://siglaz.com/GetSurfaceByDisk_DDAStagingArea" style="document" />
+      <wsdl:input name="GetSurfaceByDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSurfaceByDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceOfDiskPaging">
+      <soap:operation soapAction="http://siglaz.com/GetSourceOfDiskPaging_DDAStagingArea" style="document" />
+      <wsdl:input name="GetSourceOfDiskPaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSourceOfDiskPaging_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SurfaceOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SurfaceOfDisk_DDAStagingArea" style="document" />
+      <wsdl:input name="GetTotalRow_SurfaceOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTotalRow_SurfaceOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalRow_SourceOfDisk">
+      <soap:operation soapAction="http://siglaz.com/GetTotalRow_SourceOfDisk_DDAStagingArea" style="document" />
+      <wsdl:input name="GetTotalRow_SourceOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTotalRow_SourceOfDisk_DDAStagingArea">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Source">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/" />
+    <wsdl:port name="SourceSoap" binding="tns:SourceSoap">
+      <soap:address location="http://localhost/DDAWebService/Source.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

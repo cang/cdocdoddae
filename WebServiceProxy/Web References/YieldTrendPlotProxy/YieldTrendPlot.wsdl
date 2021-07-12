@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://siglaz.com" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="GetChartData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recipe" type="tns:YieldTrendPlotRecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="YieldTrendPlotRecipe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TimeFilter" type="tns:TimeFilter" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueryCondition" type="tns:QueryCondition" />
+          <s:element minOccurs="1" maxOccurs="1" name="Grade" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControlLimit" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryAxis" type="tns:CategoryAxis" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueAxis" type="tns:ValueAxis" />
+          <s:element minOccurs="0" maxOccurs="1" name="CubeInfo" type="tns:CubeInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsShowNullDataPoint" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:TimeRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="From" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="To" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="N" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TimeRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="LastOneHour" />
+          <s:enumeration value="Last6Hours" />
+          <s:enumeration value="Last12Hours" />
+          <s:enumeration value="LastOneDay" />
+          <s:enumeration value="LastOneWeek" />
+          <s:enumeration value="Last2Weeks" />
+          <s:enumeration value="Last3Weeks" />
+          <s:enumeration value="LastOneMonth" />
+          <s:enumeration value="FromDateToDate" />
+          <s:enumeration value="LastNHours" />
+          <s:enumeration value="LastNDays" />
+          <s:enumeration value="LastNWeeks" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QueryCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FabId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConditionType" type="tns:ConditionType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConditionList" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOrAnd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFilter" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ConditionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Basic" />
+          <s:enumeration value="Advanced" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CategoryAxis">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:CategoryAxisUnit" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupUnit" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CategoryAxisUnit">
+        <s:restriction base="s:string">
+          <s:enumeration value="Wafer" />
+          <s:enumeration value="Lot" />
+          <s:enumeration value="Hour" />
+          <s:enumeration value="Day" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="Month" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ValueAxis">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="tns:ValueAxisUnit" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ValueAxisUnit">
+        <s:restriction base="s:string">
+          <s:enumeration value="WaferChipCount" />
+          <s:enumeration value="SignatureChipCount" />
+          <s:enumeration value="Yield" />
+          <s:enumeration value="AverageProcessingTime" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CubeInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:CubeType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CubeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yield2H" />
+          <s:enumeration value="Yield4H" />
+          <s:enumeration value="Performance" />
+          <s:enumeration value="Yield2H_V2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetChartDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChartDataResult" type="tns:YieldTrendPlotResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="YieldTrendPlotResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ChartTitle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CategoryLabel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataLabel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="CategoryValues" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="DataValues" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ControlLimit" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="DateTimes" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetHintData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fabID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cubeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cubeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHintDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHintDataResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSetResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalRow" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetCubeNames">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cubeType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCubeNamesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCubeNamesResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFabList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFabListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFabListResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cubeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cubeType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDateListResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTemplateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateListResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="templateKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateDetailResult" type="tns:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIsActive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cubeKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIsActiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckIsActiveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetChartDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChartData" />
+  </wsdl:message>
+  <wsdl:message name="GetChartDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChartDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHintData" />
+  </wsdl:message>
+  <wsdl:message name="GetHintDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHintDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCubeNamesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCubeNames" />
+  </wsdl:message>
+  <wsdl:message name="GetCubeNamesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCubeNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFabListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFabList" />
+  </wsdl:message>
+  <wsdl:message name="GetFabListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFabListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDateList" />
+  </wsdl:message>
+  <wsdl:message name="GetDateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateList" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIsActiveSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIsActive" />
+  </wsdl:message>
+  <wsdl:message name="CheckIsActiveSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIsActiveResponse" />
+  </wsdl:message>
+  <wsdl:portType name="YieldTrendPlotSoap">
+    <wsdl:operation name="GetChartData">
+      <wsdl:input message="tns:GetChartDataSoapIn" />
+      <wsdl:output message="tns:GetChartDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <wsdl:input message="tns:GetHintDataSoapIn" />
+      <wsdl:output message="tns:GetHintDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCubeNames">
+      <wsdl:input message="tns:GetCubeNamesSoapIn" />
+      <wsdl:output message="tns:GetCubeNamesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFabList">
+      <wsdl:input message="tns:GetFabListSoapIn" />
+      <wsdl:output message="tns:GetFabListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDateList">
+      <wsdl:input message="tns:GetDateListSoapIn" />
+      <wsdl:output message="tns:GetDateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateList">
+      <wsdl:input message="tns:GetTemplateListSoapIn" />
+      <wsdl:output message="tns:GetTemplateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateDetail">
+      <wsdl:input message="tns:GetTemplateDetailSoapIn" />
+      <wsdl:output message="tns:GetTemplateDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIsActive">
+      <wsdl:input message="tns:CheckIsActiveSoapIn" />
+      <wsdl:output message="tns:CheckIsActiveSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="YieldTrendPlotSoap" type="tns:YieldTrendPlotSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetChartData">
+      <soap:operation soapAction="http://siglaz.com/GetChartData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHintData">
+      <soap:operation soapAction="http://siglaz.com/GetHintData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCubeNames">
+      <soap:operation soapAction="http://siglaz.com/GetCubeNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFabList">
+      <soap:operation soapAction="http://siglaz.com/GetFabList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDateList">
+      <soap:operation soapAction="http://siglaz.com/GetDateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateList">
+      <soap:operation soapAction="http://siglaz.com/GetTemplateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateDetail">
+      <soap:operation soapAction="http://siglaz.com/GetTemplateDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIsActive">
+      <soap:operation soapAction="http://siglaz.com/CheckIsActive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="YieldTrendPlot">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/" />
+    <wsdl:port name="YieldTrendPlotSoap" binding="tns:YieldTrendPlotSoap">
+      <soap:address location="http://localhost/DDAWebService/YieldTrendPlot.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

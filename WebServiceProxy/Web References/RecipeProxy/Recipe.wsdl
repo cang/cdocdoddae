@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://siglaz.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="RecipeListToDataset">
+        <s:complexType />
+      </s:element>
+      <s:element name="RecipeListToDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecipeListToDatasetResult" type="s0:DataSetResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataSetResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalRow" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s0:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RecipeNameByKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecipeNameByKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecipeNameByKeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipeByKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipeByKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecipeByKeyResult" type="s0:DDARecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DDARecipe">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SignatureCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TesterType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BreakWhenFound" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecipeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SCKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignatureName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrevRecipeKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrevRecipeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawData" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s0:eRecipeStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eRecipeStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Running" />
+          <s:enumeration value="Edited" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RecipeList">
+        <s:complexType />
+      </s:element>
+      <s:element name="RecipeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecipeListResult" type="s0:RecipeListResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RecipeListResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="Recipes" type="s0:DDARecipe" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetRawData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRawDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRawDataResult" type="s0:BinaryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BinaryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:base64Binary" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeleteRecipe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRecipeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteRecipeResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultBase">
+        <s:complexContent mixed="false">
+          <s:extension base="s0:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id64" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="id32" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id16" type="s:short" />
+              <s:element minOccurs="0" maxOccurs="1" name="idstring" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="InsertRecipe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_recipe" type="s0:DDARecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertRecipeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertRecipeResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertRecipeForce">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_recipe" type="s0:DDARecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertRecipeForceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertRecipeForceResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRecipe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_recipe" type="s0:DDARecipe" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRecipeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRecipeResult" type="s0:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStatusResult" type="s0:eRecipeStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeKey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s0:eRecipeStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CanDelete">
+        <s:complexType />
+      </s:element>
+      <s:element name="CanDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CanDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecipeIsEdited">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecipeIsEditedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RecipeIsEditedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetRecipeStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetRecipeStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNextRecipeKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="onelevel" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNextRecipeKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNextRecipeKeyResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="RecipeListToDatasetSoapIn">
+    <part name="parameters" element="s0:RecipeListToDataset" />
+  </message>
+  <message name="RecipeListToDatasetSoapOut">
+    <part name="parameters" element="s0:RecipeListToDatasetResponse" />
+  </message>
+  <message name="RecipeNameByKeySoapIn">
+    <part name="parameters" element="s0:RecipeNameByKey" />
+  </message>
+  <message name="RecipeNameByKeySoapOut">
+    <part name="parameters" element="s0:RecipeNameByKeyResponse" />
+  </message>
+  <message name="GetRecipeByKeySoapIn">
+    <part name="parameters" element="s0:GetRecipeByKey" />
+  </message>
+  <message name="GetRecipeByKeySoapOut">
+    <part name="parameters" element="s0:GetRecipeByKeyResponse" />
+  </message>
+  <message name="RecipeListSoapIn">
+    <part name="parameters" element="s0:RecipeList" />
+  </message>
+  <message name="RecipeListSoapOut">
+    <part name="parameters" element="s0:RecipeListResponse" />
+  </message>
+  <message name="GetRawDataSoapIn">
+    <part name="parameters" element="s0:GetRawData" />
+  </message>
+  <message name="GetRawDataSoapOut">
+    <part name="parameters" element="s0:GetRawDataResponse" />
+  </message>
+  <message name="DeleteRecipeSoapIn">
+    <part name="parameters" element="s0:DeleteRecipe" />
+  </message>
+  <message name="DeleteRecipeSoapOut">
+    <part name="parameters" element="s0:DeleteRecipeResponse" />
+  </message>
+  <message name="InsertRecipeSoapIn">
+    <part name="parameters" element="s0:InsertRecipe" />
+  </message>
+  <message name="InsertRecipeSoapOut">
+    <part name="parameters" element="s0:InsertRecipeResponse" />
+  </message>
+  <message name="InsertRecipeForceSoapIn">
+    <part name="parameters" element="s0:InsertRecipeForce" />
+  </message>
+  <message name="InsertRecipeForceSoapOut">
+    <part name="parameters" element="s0:InsertRecipeForceResponse" />
+  </message>
+  <message name="UpdateRecipeSoapIn">
+    <part name="parameters" element="s0:UpdateRecipe" />
+  </message>
+  <message name="UpdateRecipeSoapOut">
+    <part name="parameters" element="s0:UpdateRecipeResponse" />
+  </message>
+  <message name="GetStatusSoapIn">
+    <part name="parameters" element="s0:GetStatus" />
+  </message>
+  <message name="GetStatusSoapOut">
+    <part name="parameters" element="s0:GetStatusResponse" />
+  </message>
+  <message name="UpdateStatusSoapIn">
+    <part name="parameters" element="s0:UpdateStatus" />
+  </message>
+  <message name="UpdateStatusSoapOut">
+    <part name="parameters" element="s0:UpdateStatusResponse" />
+  </message>
+  <message name="CanDeleteSoapIn">
+    <part name="parameters" element="s0:CanDelete" />
+  </message>
+  <message name="CanDeleteSoapOut">
+    <part name="parameters" element="s0:CanDeleteResponse" />
+  </message>
+  <message name="RecipeIsEditedSoapIn">
+    <part name="parameters" element="s0:RecipeIsEdited" />
+  </message>
+  <message name="RecipeIsEditedSoapOut">
+    <part name="parameters" element="s0:RecipeIsEditedResponse" />
+  </message>
+  <message name="ResetRecipeStatusSoapIn">
+    <part name="parameters" element="s0:ResetRecipeStatus" />
+  </message>
+  <message name="ResetRecipeStatusSoapOut">
+    <part name="parameters" element="s0:ResetRecipeStatusResponse" />
+  </message>
+  <message name="GetNextRecipeKeySoapIn">
+    <part name="parameters" element="s0:GetNextRecipeKey" />
+  </message>
+  <message name="GetNextRecipeKeySoapOut">
+    <part name="parameters" element="s0:GetNextRecipeKeyResponse" />
+  </message>
+  <portType name="RecipeSoap">
+    <operation name="RecipeListToDataset">
+      <input message="s0:RecipeListToDatasetSoapIn" />
+      <output message="s0:RecipeListToDatasetSoapOut" />
+    </operation>
+    <operation name="RecipeNameByKey">
+      <input message="s0:RecipeNameByKeySoapIn" />
+      <output message="s0:RecipeNameByKeySoapOut" />
+    </operation>
+    <operation name="GetRecipeByKey">
+      <input message="s0:GetRecipeByKeySoapIn" />
+      <output message="s0:GetRecipeByKeySoapOut" />
+    </operation>
+    <operation name="RecipeList">
+      <input message="s0:RecipeListSoapIn" />
+      <output message="s0:RecipeListSoapOut" />
+    </operation>
+    <operation name="GetRawData">
+      <input message="s0:GetRawDataSoapIn" />
+      <output message="s0:GetRawDataSoapOut" />
+    </operation>
+    <operation name="DeleteRecipe">
+      <input message="s0:DeleteRecipeSoapIn" />
+      <output message="s0:DeleteRecipeSoapOut" />
+    </operation>
+    <operation name="InsertRecipe">
+      <input message="s0:InsertRecipeSoapIn" />
+      <output message="s0:InsertRecipeSoapOut" />
+    </operation>
+    <operation name="InsertRecipeForce">
+      <input message="s0:InsertRecipeForceSoapIn" />
+      <output message="s0:InsertRecipeForceSoapOut" />
+    </operation>
+    <operation name="UpdateRecipe">
+      <input message="s0:UpdateRecipeSoapIn" />
+      <output message="s0:UpdateRecipeSoapOut" />
+    </operation>
+    <operation name="GetStatus">
+      <input message="s0:GetStatusSoapIn" />
+      <output message="s0:GetStatusSoapOut" />
+    </operation>
+    <operation name="UpdateStatus">
+      <input message="s0:UpdateStatusSoapIn" />
+      <output message="s0:UpdateStatusSoapOut" />
+    </operation>
+    <operation name="CanDelete">
+      <input message="s0:CanDeleteSoapIn" />
+      <output message="s0:CanDeleteSoapOut" />
+    </operation>
+    <operation name="RecipeIsEdited">
+      <input message="s0:RecipeIsEditedSoapIn" />
+      <output message="s0:RecipeIsEditedSoapOut" />
+    </operation>
+    <operation name="ResetRecipeStatus">
+      <input message="s0:ResetRecipeStatusSoapIn" />
+      <output message="s0:ResetRecipeStatusSoapOut" />
+    </operation>
+    <operation name="GetNextRecipeKey">
+      <input message="s0:GetNextRecipeKeySoapIn" />
+      <output message="s0:GetNextRecipeKeySoapOut" />
+    </operation>
+  </portType>
+  <binding name="RecipeSoap" type="s0:RecipeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="RecipeListToDataset">
+      <soap:operation soapAction="http://siglaz.com/RecipeListToDataset" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RecipeNameByKey">
+      <soap:operation soapAction="http://siglaz.com/RecipeNameByKey" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetRecipeByKey">
+      <soap:operation soapAction="http://siglaz.com/GetRecipeByKey" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RecipeList">
+      <soap:operation soapAction="http://siglaz.com/RecipeList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetRawData">
+      <soap:operation soapAction="http://siglaz.com/GetRawData" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteRecipe">
+      <soap:operation soapAction="http://siglaz.com/DeleteRecipe" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="InsertRecipe">
+      <soap:operation soapAction="http://siglaz.com/InsertRecipe" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="InsertRecipeForce">
+      <soap:operation soapAction="http://siglaz.com/InsertRecipeForce" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateRecipe">
+      <soap:operation soapAction="http://siglaz.com/UpdateRecipe" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetStatus">
+      <soap:operation soapAction="http://siglaz.com/GetStatus" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateStatus">
+      <soap:operation soapAction="http://siglaz.com/UpdateStatus" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CanDelete">
+      <soap:operation soapAction="http://siglaz.com/CanDelete" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RecipeIsEdited">
+      <soap:operation soapAction="http://siglaz.com/RecipeIsEdited" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ResetRecipeStatus">
+      <soap:operation soapAction="http://siglaz.com/ResetRecipeStatus" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetNextRecipeKey">
+      <soap:operation soapAction="http://siglaz.com/GetNextRecipeKey" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Recipe">
+    <port name="RecipeSoap" binding="s0:RecipeSoap">
+      <soap:address location="http://cdo/DDAWebService/Recipe.asmx" />
+    </port>
+  </service>
+</definitions>

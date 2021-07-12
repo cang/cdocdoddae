@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="DDADB" targetNamespace="http://tempuri.org/DDADB.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/DDADB.xsd" xmlns:mstns="http://tempuri.org/DDADB.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="DDADB" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="DDA_Signatures">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SignatureKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="SignatureID" type="xs:int" nillable="false" />
+							<xs:element name="SignatureName" type="xs:string" nillable="false" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="DDADBKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:DDA_Signatures" />
+			<xs:field xpath="mstns:SignatureKey" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

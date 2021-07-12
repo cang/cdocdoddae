@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://siglaz.com" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://siglaz.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siglaz.com">
+      <s:element name="GetNewSurfaceKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prevrecipid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fabkey" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="TestGradeList" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="numbersurfaces" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewSurfaceKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewSurfaceKeyResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPrevRecipeKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UNKNOWN_ERROR" />
+          <s:enumeration value="NO_DATA" />
+          <s:enumeration value="INVALID_SQL_STATEMENT" />
+          <s:enumeration value="NO_AUTHORIZED" />
+          <s:enumeration value="NO_DATA_TO_ANALYZE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ResultBase">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="id64" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="id32" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="id16" type="s:short" />
+              <s:element minOccurs="0" maxOccurs="1" name="idstring" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetPrevRecipeKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPrevRecipeKeyResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResultDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResultDetailResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessedResultDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipeid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessedResultDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProcessedResultDetailResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasSignature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasSignatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HasSignatureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteNoSignature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessingDuration" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteNoSignatureResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckProcessed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipekey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckProcessedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckProcessedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurfaceUpdateProcessingDuration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessingDuration" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurfaceUpdateProcessingDurationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Processed_Insert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipekey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="BreakWhenFound" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="finish" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Processed_InsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Processed_InsertResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Processed_Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recipekey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="surfacekey" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Processed_DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Processed_DeleteResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Results_Insert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultobj" type="tns:SurfaceResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SurfaceResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultKey" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="SignatureKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnalyzeTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultDetailKey" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="SurfaceKey" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfDefect" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentOfDefect" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawData" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceThumbnail" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceThumbnailFlat" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessingDuration" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Results_InsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results_InsertResult" type="tns:ResultBase" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetNewSurfaceKeySoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewSurfaceKey" />
+  </wsdl:message>
+  <wsdl:message name="GetNewSurfaceKeySoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewSurfaceKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPrevRecipeKeySoapIn">
+    <wsdl:part name="parameters" element="tns:GetPrevRecipeKey" />
+  </wsdl:message>
+  <wsdl:message name="GetPrevRecipeKeySoapOut">
+    <wsdl:part name="parameters" element="tns:GetPrevRecipeKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResultDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResultDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetResultDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResultDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessedResultDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProcessedResultDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessedResultDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProcessedResultDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasSignatureSoapIn">
+    <wsdl:part name="parameters" element="tns:HasSignature" />
+  </wsdl:message>
+  <wsdl:message name="HasSignatureSoapOut">
+    <wsdl:part name="parameters" element="tns:HasSignatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteNoSignatureSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteNoSignature" />
+  </wsdl:message>
+  <wsdl:message name="DeleteNoSignatureSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteNoSignatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckProcessedSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckProcessed" />
+  </wsdl:message>
+  <wsdl:message name="CheckProcessedSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckProcessedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceUpdateProcessingDurationSoapIn">
+    <wsdl:part name="parameters" element="tns:SurfaceUpdateProcessingDuration" />
+  </wsdl:message>
+  <wsdl:message name="SurfaceUpdateProcessingDurationSoapOut">
+    <wsdl:part name="parameters" element="tns:SurfaceUpdateProcessingDurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Processed_InsertSoapIn">
+    <wsdl:part name="parameters" element="tns:Processed_Insert" />
+  </wsdl:message>
+  <wsdl:message name="Processed_InsertSoapOut">
+    <wsdl:part name="parameters" element="tns:Processed_InsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="Processed_DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Processed_Delete" />
+  </wsdl:message>
+  <wsdl:message name="Processed_DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:Processed_DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Results_InsertSoapIn">
+    <wsdl:part name="parameters" element="tns:Results_Insert" />
+  </wsdl:message>
+  <wsdl:message name="Results_InsertSoapOut">
+    <wsdl:part name="parameters" element="tns:Results_InsertResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SurfaceSoap">
+    <wsdl:operation name="GetNewSurfaceKey">
+      <wsdl:input message="tns:GetNewSurfaceKeySoapIn" />
+      <wsdl:output message="tns:GetNewSurfaceKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrevRecipeKey">
+      <wsdl:input message="tns:GetPrevRecipeKeySoapIn" />
+      <wsdl:output message="tns:GetPrevRecipeKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultDetail">
+      <wsdl:input message="tns:GetResultDetailSoapIn" />
+      <wsdl:output message="tns:GetResultDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessedResultDetail">
+      <wsdl:input message="tns:GetProcessedResultDetailSoapIn" />
+      <wsdl:output message="tns:GetProcessedResultDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasSignature">
+      <wsdl:input message="tns:HasSignatureSoapIn" />
+      <wsdl:output message="tns:HasSignatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNoSignature">
+      <wsdl:input message="tns:DeleteNoSignatureSoapIn" />
+      <wsdl:output message="tns:DeleteNoSignatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckProcessed">
+      <wsdl:input message="tns:CheckProcessedSoapIn" />
+      <wsdl:output message="tns:CheckProcessedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceUpdateProcessingDuration">
+      <wsdl:input message="tns:SurfaceUpdateProcessingDurationSoapIn" />
+      <wsdl:output message="tns:SurfaceUpdateProcessingDurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Insert">
+      <wsdl:input message="tns:Processed_InsertSoapIn" />
+      <wsdl:output message="tns:Processed_InsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Delete">
+      <wsdl:input message="tns:Processed_DeleteSoapIn" />
+      <wsdl:output message="tns:Processed_DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Results_Insert">
+      <wsdl:input message="tns:Results_InsertSoapIn" />
+      <wsdl:output message="tns:Results_InsertSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SurfaceSoap" type="tns:SurfaceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNewSurfaceKey">
+      <soap:operation soapAction="http://siglaz.com/GetNewSurfaceKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrevRecipeKey">
+      <soap:operation soapAction="http://siglaz.com/GetPrevRecipeKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResultDetail">
+      <soap:operation soapAction="http://siglaz.com/GetResultDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessedResultDetail">
+      <soap:operation soapAction="http://siglaz.com/GetProcessedResultDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasSignature">
+      <soap:operation soapAction="http://siglaz.com/HasSignature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNoSignature">
+      <soap:operation soapAction="http://siglaz.com/DeleteNoSignature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckProcessed">
+      <soap:operation soapAction="http://siglaz.com/CheckProcessed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceUpdateProcessingDuration">
+      <soap:operation soapAction="http://siglaz.com/SurfaceUpdateProcessingDuration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Insert">
+      <soap:operation soapAction="http://siglaz.com/Processed_Insert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Delete">
+      <soap:operation soapAction="http://siglaz.com/Processed_Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Results_Insert">
+      <soap:operation soapAction="http://siglaz.com/Results_Insert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SurfaceSoap12" type="tns:SurfaceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    <wsdl:operation name="GetNewSurfaceKey">
+      <soap12:operation soapAction="http://siglaz.com/GetNewSurfaceKey" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrevRecipeKey">
+      <soap12:operation soapAction="http://siglaz.com/GetPrevRecipeKey" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResultDetail">
+      <soap12:operation soapAction="http://siglaz.com/GetResultDetail" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessedResultDetail">
+      <soap12:operation soapAction="http://siglaz.com/GetProcessedResultDetail" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasSignature">
+      <soap12:operation soapAction="http://siglaz.com/HasSignature" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNoSignature">
+      <soap12:operation soapAction="http://siglaz.com/DeleteNoSignature" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckProcessed">
+      <soap12:operation soapAction="http://siglaz.com/CheckProcessed" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurfaceUpdateProcessingDuration">
+      <soap12:operation soapAction="http://siglaz.com/SurfaceUpdateProcessingDuration" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Insert">
+      <soap12:operation soapAction="http://siglaz.com/Processed_Insert" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Processed_Delete">
+      <soap12:operation soapAction="http://siglaz.com/Processed_Delete" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Results_Insert">
+      <soap12:operation soapAction="http://siglaz.com/Results_Insert" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Surface">
+    <wsdl:port name="SurfaceSoap" binding="tns:SurfaceSoap">
+      <soap:address location="http://cdo/DDAWebService/Surface.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SurfaceSoap12" binding="tns:SurfaceSoap12">
+      <soap12:address location="http://cdo/DDAWebService/Surface.asmx" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
